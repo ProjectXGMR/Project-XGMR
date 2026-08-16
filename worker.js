@@ -1,5 +1,12 @@
 export default {
   async fetch(request, env) {
-    return new Response("Worker działa!");
+    const result = await env.DB
+      .prepare("SELECT * FROM users")
+      .all();
+
+    return Response.json({
+      success: true,
+      users: result.results
+    });
   }
 };
