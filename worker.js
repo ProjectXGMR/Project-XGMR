@@ -669,11 +669,12 @@ avatarFile.addEventListener("change", async () => {
           headers: {
             "Content-Type": "application/json"
           },
-          body: JSON.stringify({
-            display_name: document.getElementById("displayName").value,
-            bio: document.getElementById("bio").value,
-            interests: document.getElementById("interests").value
-          })
+   body: JSON.stringify({
+  display_name: document.getElementById("displayName").value,
+  bio: document.getElementById("bio").value,
+  interests: document.getElementById("interests").value,
+  avatar_data: avatarPreview.src || null
+})
         });
 
         const data = await response.json();
@@ -939,6 +940,7 @@ avatarFile.addEventListener("change", async () => {
         const displayName = String(data.display_name || "").trim();
         const bio = String(data.bio || "").trim();
         const interests = String(data.interests || "").trim();
+        const avatarData = data.avatar_data || null;
 
         if (!displayName) {
           return json(
@@ -952,14 +954,15 @@ avatarFile.addEventListener("change", async () => {
 
         await env.DB
           .prepare(
-            `UPDATE profiles
-             SET display_name = ?,
-                 bio = ?,
-                 interests = ?,
-                 updated_at = CURRENT_TIMESTAMP
-             WHERE user_id = ?`
+      UPDATE profiles
+SET display_name = ?,
+    bio = ?,
+    interests = ?,
+    avatar_data = ?,
+    updated_at = CURRENT_TIMESTAMP
+WHERE user_id = ?
           )
-          .bind(displayName, bio, interests, user.id)
+.bind(displayName, bio, interests, avatarData, user.id)
           .run();
 
         return json({
