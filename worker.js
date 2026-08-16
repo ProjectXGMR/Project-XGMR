@@ -173,6 +173,92 @@ export default {
   async fetch(request, env) {
     const url = new URL(request.url);
 
+    // Publiczna strona profilu
+if (
+  url.pathname.startsWith("/u/") &&
+  request.method === "GET"
+) {
+  const username = decodeURIComponent(
+    url.pathname.substring("/u/".length)
+  ).trim();
+
+  if (!username) {
+    return new Response("Nie podano użytkownika.", {
+      status: 400,
+      headers: {
+        "Content-Type": "text/plain; charset=UTF-8"
+      }
+    });
+  }
+
+  return new Response(
+    `<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Profil - ${username}</title>
+</head>
+
+<body>
+  <h1 id="displayName">Ładowanie profilu...</h1>
+
+  <p>
+    <strong>@<span id="username"></span></strong>
+  </p>
+
+  <p id="bio"></p>
+
+  <p>
+    <strong>Zainteresowania:</strong>
+    <span id="interests"></span>
+  </p>
+
+  <p id="message"></p>
+
+  <script>
+    async function loadPublicProfile() {
+      try {
+        const response = await fetch(
+          "/api/users/" + encodeURIComponent(${JSON.stringify(username)})
+        );
+
+        const data = await response.json();
+
+        if (!data.success) {
+          document.getElementById("message").textContent =
+            data.error || "Nie znaleziono profilu.";
+          return;
+        }
+
+        document.getElementById("displayName").textContent =
+          data.profile.display_name || data.profile.username;
+
+        document.getElementById("username").textContent =
+          data.profile.username;
+
+        document.getElementById("bio").textContent =
+          data.profile.bio || "Brak opisu.";
+
+        document.getElementById("interests").textContent =
+          data.profile.interests || "Brak informacji.";
+      } catch (error) {
+        document.getElementById("message").textContent =
+          "Nie udało się pobrać profilu.";
+      }
+    }
+
+    loadPublicProfile();
+  </script>
+</body>
+</html>`,
+    {
+      headers: {
+        "Content-Type": "text/html; charset=UTF-8"
+      }
+    }
+  );
+}
     // Strona główna
     if (url.pathname === "/" && request.method === "GET") {
       return new Response(
