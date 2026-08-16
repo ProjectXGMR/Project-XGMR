@@ -550,24 +550,9 @@ if (
     const avatarFile = document.getElementById("avatarFile");
 const avatarPreview = document.getElementById("avatarPreview");
 
-avatarFile.addEventListener("change", () => {
+avatarFile.addEventListener("change", async () => {
   const file = avatarFile.files[0];
 
-if (!file) {
-  avatarPreview.style.display = "none";
-  avatarPreview.src = "";
-  return;
-}
-
-if (file.size > 200 * 1024) {
-  avatarFile.value = "";
-  avatarPreview.style.display = "none";
-  avatarPreview.src = "";
-  profileMessage.textContent =
-    "Zdjęcie jest za duże. Maksymalny rozmiar to 200 KB.";
-  return;
-}
-  
   if (!file) {
     avatarPreview.style.display = "none";
     avatarPreview.src = "";
@@ -582,14 +567,65 @@ if (file.size > 200 * 1024) {
     return;
   }
 
-  const reader = new FileReader();
+  try {
+    const image = new Image();
 
-  reader.onload = () => {
-    avatarPreview.src = reader.result;
-    avatarPreview.style.display = "block";
-  };
+    const imageUrl = URL.createObjectURL(file);
 
-  reader.readAsDataURL(file);
+    image.onload = async () => {
+      URL.revokeObjectURL(imageUrl);
+
+      const canvas = document.createElement("canvas");
+      const maxSize = 256;
+
+      let width = image.width;
+      let height = image.height;
+
+      if (width > height) {
+        if (width > maxSize) {
+          height = Math.round(height * maxSize / width);
+          width = maxSize;
+        }
+      } else {
+        if (height > maxSize) {
+          width = Math.round(width * maxSize / height);
+          height = maxSize;
+        }
+      }
+
+      canvas.width = width;
+      canvas.height = height;
+
+      const context = canvas.getContext("2d");
+
+      context.drawImage(image, 0, 0, width, height);
+
+      let quality = 0.85;
+      let compressedData = canvas.toDataURL("image/jpeg", quality);
+
+      while (
+        compressedData.length > 260000 &&
+        quality > 0.2
+      ) {
+        quality -= 0.05;
+        compressedData = canvas.toDataURL("image/jpeg", quality);
+      }
+
+      avatarPreview.src = compressedData;
+      avatarPreview.style.display = "block";
+
+      profileMessage.textContent =
+        "Zdjęcie zostało automatycznie zmniejszone.";
+    };
+
+    image.src = imageUrl;
+  } catch (error) {
+    avatarFile.value = "";
+    avatarPreview.style.display = "none";
+    avatarPreview.src = "";
+    profileMessage.textContent =
+      "Nie udało się przetworzyć zdjęcia.";
+  }
 });
     const profileMessage = document.getElementById("profileMessage");
     const logoutButton = document.getElementById("logoutButton");
