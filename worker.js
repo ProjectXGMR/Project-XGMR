@@ -681,7 +681,16 @@ profileMessage.textContent = compressedAvatarData
 
       try {
       console.log("AVATAR PRZED WYSŁANIEM:", compressedAvatarData);
-       
+
+       if (!compressedAvatarData) {
+  profileMessage.textContent = "TEST: avatar jest pusty";
+} else {
+  profileMessage.textContent =
+    "TEST: avatar jest w pamięci (" +
+    Math.round(compressedAvatarData.length / 1024) +
+    " KB)";
+}
+        
         const response = await fetch("/api/profile", {
           method: "PUT",
           headers: {
