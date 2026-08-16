@@ -560,6 +560,7 @@ if (data.profile.avatar_data) {
     const profileForm = document.getElementById("profileForm");
     const avatarFile = document.getElementById("avatarFile");
 const avatarPreview = document.getElementById("avatarPreview");
+let compressedAvatarData = null;
 
 avatarFile.addEventListener("change", async () => {
   const file = avatarFile.files[0];
@@ -622,8 +623,10 @@ avatarFile.addEventListener("change", async () => {
         compressedData = canvas.toDataURL("image/jpeg", quality);
       }
 
-      avatarPreview.src = compressedData;
-      avatarPreview.style.display = "block";
+compressedAvatarData = compressedData;
+
+avatarPreview.src = compressedData;
+avatarPreview.style.display = "block";
 
       profileMessage.textContent =
         "Zdjęcie zostało automatycznie zmniejszone.";
@@ -684,7 +687,7 @@ avatarFile.addEventListener("change", async () => {
   display_name: document.getElementById("displayName").value,
   bio: document.getElementById("bio").value,
   interests: document.getElementById("interests").value,
-  avatar_data: avatarPreview.src || null
+avatar_data: compressedAvatarData
 })
         });
 
