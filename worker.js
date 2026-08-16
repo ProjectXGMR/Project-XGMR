@@ -687,6 +687,7 @@ avatarPreview.style.display = "block";
   display_name: document.getElementById("displayName").value,
   bio: document.getElementById("bio").value,
   interests: document.getElementById("interests").value,
+console.log("AVATAR DATA:", compressedAvatarData);
 avatar_data: compressedAvatarData
 })
         });
