@@ -1,6 +1,12 @@
 {
-// wrangler.jsonc
-"name": "myproject",
+  "name": "myproject",
   "main": "worker.js",
-  "compatibility_date": "2026-08-16"
+  "compatibility_date": "2026-08-16",
+  "d1_databases": [
+    {
+      "binding": "DB",
+      "database_name": "project-xgmr-db",
+      "database_id": "a429778d-c365-413f-8f11-476edf2e64c7"
+    }
+  ]
 }
