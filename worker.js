@@ -331,6 +331,17 @@ if (
 
         document.getElementById("displayName").textContent =
           data.profile.display_name || data.profile.username;
+          const avatar = document.getElementById("avatar");
+
+if (data.profile.avatar_data) {
+  avatar.textContent = "";
+  avatar.style.backgroundImage =
+    "url('" + data.profile.avatar_data + "')";
+  avatar.style.backgroundSize = "cover";
+  avatar.style.backgroundPosition = "center";
+} else {
+  avatar.textContent = "?";
+}
 
         document.getElementById("username").textContent =
           data.profile.username;
