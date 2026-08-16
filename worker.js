@@ -197,7 +197,92 @@ if (
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
   <title>Profil - ${username}</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      font-family: Arial, sans-serif;
+      background: #f3f4f6;
+      color: #111827;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 24px;
+    }
+
+    .profile-card {
+      width: 100%;
+      max-width: 520px;
+      background: white;
+      border-radius: 18px;
+      padding: 32px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+    }
+
+    .avatar {
+      width: 96px;
+      height: 96px;
+      border-radius: 50%;
+      background: #e5e7eb;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 20px;
+      font-size: 38px;
+      font-weight: bold;
+      color: #4b5563;
+    }
+
+    h1 {
+      text-align: center;
+      margin: 0 0 6px;
+    }
+
+    .username {
+      text-align: center;
+      color: #6b7280;
+      margin-bottom: 28px;
+    }
+
+    .section {
+      margin-top: 20px;
+    }
+
+    .section-title {
+      font-size: 14px;
+      font-weight: bold;
+      color: #6b7280;
+      margin-bottom: 6px;
+      text-transform: uppercase;
+    }
+
+    .bio {
+      line-height: 1.6;
+    }
+
+    .interests {
+      line-height: 1.6;
+    }
+
+    .back {
+      display: inline-block;
+      margin-top: 28px;
+      text-decoration: none;
+      color: #2563eb;
+    }
+
+    #message {
+      text-align: center;
+      color: #dc2626;
+    }
+  </style>
 </head>
 
 <body>
