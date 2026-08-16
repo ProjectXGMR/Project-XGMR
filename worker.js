@@ -998,12 +998,13 @@ if (url.pathname.startsWith("/api/users/") && request.method === "GET") {
 
     const user = await env.DB
       .prepare(
-        `SELECT
-          users.username,
-          profiles.display_name,
-          profiles.bio,
-          profiles.interests,
-          profiles.avatar_url
+ SELECT
+  users.username,
+  profiles.display_name,
+  profiles.bio,
+  profiles.interests,
+  profiles.avatar_url,
+  profiles.avatar_data
         FROM users
         LEFT JOIN profiles ON profiles.user_id = users.id
         WHERE users.username = ?`
@@ -1029,6 +1030,7 @@ if (url.pathname.startsWith("/api/users/") && request.method === "GET") {
         bio: user.bio,
         interests: user.interests,
         avatar_url: user.avatar_url
+        avatar_data: user.avatar_data
       }
     });
   } catch (error) {
