@@ -286,20 +286,33 @@ if (
 </head>
 
 <body>
-  <h1 id="displayName">Ładowanie profilu...</h1>
+  <main class="profile-card">
 
-  <p>
-    <strong>@<span id="username"></span></strong>
-  </p>
+    <div class="avatar" id="avatar">
+      ?
+    </div>
 
-  <p id="bio"></p>
+    <h1 id="displayName">Ładowanie profilu...</h1>
 
-  <p>
-    <strong>Zainteresowania:</strong>
-    <span id="interests"></span>
-  </p>
+    <div class="username">
+      @<span id="username"></span>
+    </div>
 
-  <p id="message"></p>
+    <div class="section">
+      <div class="section-title">O mnie</div>
+      <div class="bio" id="bio"></div>
+    </div>
+
+    <div class="section">
+      <div class="section-title">Zainteresowania</div>
+      <div class="interests" id="interests"></div>
+    </div>
+
+    <p id="message"></p>
+
+    <a class="back" href="/">← Wróć na stronę główną</a>
+
+  </main>
 
   <script>
     async function loadPublicProfile() {
