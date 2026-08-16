@@ -553,6 +553,21 @@ const avatarPreview = document.getElementById("avatarPreview");
 avatarFile.addEventListener("change", () => {
   const file = avatarFile.files[0];
 
+if (!file) {
+  avatarPreview.style.display = "none";
+  avatarPreview.src = "";
+  return;
+}
+
+if (file.size > 200 * 1024) {
+  avatarFile.value = "";
+  avatarPreview.style.display = "none";
+  avatarPreview.src = "";
+  profileMessage.textContent =
+    "Zdjęcie jest za duże. Maksymalny rozmiar to 200 KB.";
+  return;
+}
+  
   if (!file) {
     avatarPreview.style.display = "none";
     avatarPreview.src = "";
