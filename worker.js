@@ -547,6 +547,35 @@ if (
       }
         const profileSection = document.getElementById("profileSection");
     const profileForm = document.getElementById("profileForm");
+    const avatarFile = document.getElementById("avatarFile");
+const avatarPreview = document.getElementById("avatarPreview");
+
+avatarFile.addEventListener("change", () => {
+  const file = avatarFile.files[0];
+
+  if (!file) {
+    avatarPreview.style.display = "none";
+    avatarPreview.src = "";
+    return;
+  }
+
+  if (!file.type.startsWith("image/")) {
+    avatarFile.value = "";
+    avatarPreview.style.display = "none";
+    avatarPreview.src = "";
+    profileMessage.textContent = "Wybierz plik graficzny.";
+    return;
+  }
+
+  const reader = new FileReader();
+
+  reader.onload = () => {
+    avatarPreview.src = reader.result;
+    avatarPreview.style.display = "block";
+  };
+
+  reader.readAsDataURL(file);
+});
     const profileMessage = document.getElementById("profileMessage");
     const logoutButton = document.getElementById("logoutButton");
 
