@@ -696,6 +696,68 @@ export default {
         );
       }
     }
+    // Publiczny profil użytkownika
+if (url.pathname.startsWith("/api/users/") && request.method === "GET") {
+  try {
+    const username = decodeURIComponent(
+      url.pathname.substring("/api/users/".length)
+    ).trim();
+
+    if (!username) {
+      return json(
+        {
+          success: false,
+          error: "Nie podano użytkownika."
+        },
+        400
+      );
+    }
+
+    const user = await env.DB
+      .prepare(
+        `SELECT
+          users.username,
+          profiles.display_name,
+          profiles.bio,
+          profiles.interests,
+          profiles.avatar_url
+        FROM users
+        LEFT JOIN profiles ON profiles.user_id = users.id
+        WHERE users.username = ?`
+      )
+      .bind(username)
+      .first();
+
+    if (!user) {
+      return json(
+        {
+          success: false,
+          error: "Nie znaleziono użytkownika."
+        },
+        404
+      );
+    }
+
+    return json({
+      success: true,
+      profile: {
+        username: user.username,
+        display_name: user.display_name,
+        bio: user.bio,
+        interests: user.interests,
+        avatar_url: user.avatar_url
+      }
+    });
+  } catch (error) {
+    return json(
+      {
+        success: false,
+        error: "Nie udało się pobrać profilu."
+      },
+      500
+    );
+  }
+}
     // Sprawdzenie aktualnej sesji
     if (url.pathname === "/api/me" && request.method === "GET") {
       const user = await getCurrentUser(request, env);
