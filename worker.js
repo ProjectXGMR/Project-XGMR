@@ -239,7 +239,50 @@ export default {
   </form>
 
   <p id="loginMessage"></p>
+<div id="profileSection" style="display:none;">
 
+  <hr>
+
+  <h2>Twój profil</h2>
+
+  <p><strong>Użytkownik:</strong> <span id="profileUsername"></span></p>
+
+  <form id="profileForm">
+
+    <input
+      type="text"
+      id="displayName"
+      placeholder="Nazwa wyświetlana"
+      required
+    >
+
+    <br><br>
+
+    <textarea
+      id="bio"
+      placeholder="Opowiedz coś o sobie"
+      rows="5"
+    ></textarea>
+
+    <br><br>
+
+    <input
+      type="text"
+      id="interests"
+      placeholder="Zainteresowania"
+    >
+
+    <br><br>
+
+    <button type="submit">Zapisz profil</button>
+
+  </form>
+
+  <p id="profileMessage"></p>
+
+  <button id="logoutButton">Wyloguj się</button>
+
+</div>
   <script>
     const registerForm = document.getElementById("registerForm");
     const registerMessage = document.getElementById("registerMessage");
