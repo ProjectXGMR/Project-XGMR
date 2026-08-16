@@ -687,7 +687,6 @@ avatarPreview.style.display = "block";
   display_name: document.getElementById("displayName").value,
   bio: document.getElementById("bio").value,
   interests: document.getElementById("interests").value,
-console.log("AVATAR DATA:", compressedAvatarData);
 avatar_data: compressedAvatarData
 })
         });
@@ -968,17 +967,24 @@ avatar_data: compressedAvatarData
         }
 
         await env.DB
-          .prepare(
-      UPDATE profiles
-SET display_name = ?,
-    bio = ?,
-    interests = ?,
-    avatar_data = ?,
-    updated_at = CURRENT_TIMESTAMP
-WHERE user_id = ?
-          )
-.bind(displayName, bio, interests, avatarData, user.id)
-          .run();
+       await env.DB
+  .prepare(
+    `UPDATE profiles
+     SET display_name = ?,
+         bio = ?,
+         interests = ?,
+         avatar_data = ?,
+         updated_at = CURRENT_TIMESTAMP
+     WHERE user_id = ?`
+  )
+  .bind(
+    displayName,
+    bio,
+    interests,
+    avatarData,
+    user.id
+  )
+  .run();
 
         return json({
           success: true,
