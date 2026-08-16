@@ -3,10 +3,63 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Moja strona</title>
+    <title>myproject</title>
 </head>
 <body>
-    <h1>Witaj na mojej stronie!</h1>
-    <p>Strona działa.</p>
+    <h1>Utwórz konto</h1>
+
+    <form id="registerForm">
+        <input
+            type="text"
+            id="username"
+            placeholder="Nazwa użytkownika"
+            required
+        >
+
+        <input
+            type="email"
+            id="email"
+            placeholder="E-mail"
+            required
+        >
+
+        <input
+            type="password"
+            id="password"
+            placeholder="Hasło"
+            required
+        >
+
+        <button type="submit">Zarejestruj się</button>
+    </form>
+
+    <p id="message"></p>
+
+    <script>
+        const form = document.getElementById("registerForm");
+        const message = document.getElementById("message");
+
+        form.addEventListener("submit", async (event) => {
+            event.preventDefault();
+
+            const response = await fetch("/api/register", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                    username: document.getElementById("username").value,
+                    email: document.getElementById("email").value,
+                    password: document.getElementById("password").value
+                })
+            });
+
+            const data = await response.json();
+
+            message.textContent = data.success
+                ? "Konto zostało utworzone!"
+                : data.error;
+        });
+    </script>
 </body>
 </html>
