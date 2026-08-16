@@ -1,5 +1,6 @@
 {
-  "name": "myproject",
+// wrangler.jsonc
+"name": "myproject",
   "main": "worker.js",
   "compatibility_date": "2026-08-16"
 }
