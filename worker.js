@@ -345,6 +345,86 @@ export default {
         loginMessage.textContent =
           "Wystąpił błąd połączenia.";
       }
+        const profileSection = document.getElementById("profileSection");
+    const profileForm = document.getElementById("profileForm");
+    const profileMessage = document.getElementById("profileMessage");
+    const logoutButton = document.getElementById("logoutButton");
+
+    async function loadProfile() {
+      try {
+        const response = await fetch("/api/profile");
+        const data = await response.json();
+
+        if (!data.success) {
+          profileSection.style.display = "none";
+          return;
+        }
+
+        profileSection.style.display = "block";
+
+        document.getElementById("profileUsername").textContent =
+          data.profile.username;
+
+        document.getElementById("displayName").value =
+          data.profile.display_name || "";
+
+        document.getElementById("bio").value =
+          data.profile.bio || "";
+
+        document.getElementById("interests").value =
+          data.profile.interests || "";
+      } catch (error) {
+        profileSection.style.display = "none";
+      }
+    }
+
+    profileForm.addEventListener("submit", async (event) => {
+      event.preventDefault();
+
+      profileMessage.textContent = "Zapisywanie...";
+
+      try {
+        const response = await fetch("/api/profile", {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify({
+            display_name: document.getElementById("displayName").value,
+            bio: document.getElementById("bio").value,
+            interests: document.getElementById("interests").value
+          })
+        });
+
+        const data = await response.json();
+
+        profileMessage.textContent = data.success
+          ? "Profil został zapisany!"
+          : data.error;
+
+        if (data.success) {
+          await loadProfile();
+        }
+      } catch (error) {
+        profileMessage.textContent =
+          "Wystąpił błąd połączenia.";
+      }
+    });
+
+    logoutButton.addEventListener("click", async () => {
+      const response = await fetch("/api/logout", {
+        method: "POST"
+      });
+
+      const data = await response.json();
+
+      if (data.success) {
+        profileSection.style.display = "none";
+        loginMessage.textContent = "Wylogowano.";
+      }
+    });
+
+    loadProfile();
     });
   </script>
 </body>
