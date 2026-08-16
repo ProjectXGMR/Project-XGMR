@@ -490,6 +490,89 @@ export default {
       }
     }
 
+        // Pobieranie profilu
+    if (url.pathname === "/api/profile" && request.method === "GET") {
+      const user = await getCurrentUser(request, env);
+
+      if (!user) {
+        return json(
+          {
+            success: false,
+            error: "Musisz być zalogowany."
+          },
+          401
+        );
+      }
+
+      return json({
+        success: true,
+        profile: {
+          username: user.username,
+          display_name: user.display_name,
+          bio: user.bio,
+          interests: user.interests,
+          avatar_url: user.avatar_url
+        }
+      });
+    }
+
+    // Aktualizacja profilu
+    if (url.pathname === "/api/profile" && request.method === "PUT") {
+      try {
+        const user = await getCurrentUser(request, env);
+
+        if (!user) {
+          return json(
+            {
+              success: false,
+              error: "Musisz być zalogowany."
+            },
+            401
+          );
+        }
+
+        const data = await request.json();
+
+        const displayName = String(data.display_name || "").trim();
+        const bio = String(data.bio || "").trim();
+        const interests = String(data.interests || "").trim();
+
+        if (!displayName) {
+          return json(
+            {
+              success: false,
+              error: "Nazwa wyświetlana jest wymagana."
+            },
+            400
+          );
+        }
+
+        await env.DB
+          .prepare(
+            `UPDATE profiles
+             SET display_name = ?,
+                 bio = ?,
+                 interests = ?,
+                 updated_at = CURRENT_TIMESTAMP
+             WHERE user_id = ?`
+          )
+          .bind(displayName, bio, interests, user.id)
+          .run();
+
+        return json({
+          success: true,
+          message: "Profil został zaktualizowany."
+        });
+      } catch (error) {
+        return json(
+          {
+            success: false,
+            error: "Nie udało się zaktualizować profilu."
+          },
+          500
+        );
+      }
+    }
     // Sprawdzenie aktualnej sesji
     if (url.pathname === "/api/me" && request.method === "GET") {
       const user = await getCurrentUser(request, env);
