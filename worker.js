@@ -432,7 +432,23 @@ if (
   <p><strong>Użytkownik:</strong> <span id="profileUsername"></span></p>
 
   <form id="profileForm">
+<label for="avatarFile">Zdjęcie profilowe</label>
 
+<br>
+
+<input
+  type="file"
+  id="avatarFile"
+  accept="image/jpeg,image/png,image/webp"
+>
+
+<br><br>
+
+<img
+  id="avatarPreview"
+  alt="Podgląd zdjęcia profilowego"
+  style="display:none; width:120px; height:120px; object-fit:cover; border-radius:50%;"
+>
     <input
       type="text"
       id="displayName"
