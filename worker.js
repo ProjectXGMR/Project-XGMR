@@ -678,16 +678,18 @@ avatarPreview.style.display = "block";
       profileMessage.textContent = "Zapisywanie...";
 
       try {
+      console.log("AVATAR PRZED WYSŁANIEM:", compressedAvatarData);
+       
         const response = await fetch("/api/profile", {
           method: "PUT",
           headers: {
             "Content-Type": "application/json"
           },
-   body: JSON.stringify({
+body: JSON.stringify({
   display_name: document.getElementById("displayName").value,
   bio: document.getElementById("bio").value,
   interests: document.getElementById("interests").value,
-avatar_data: compressedAvatarData
+  avatar_data: compressedAvatarData
 })
         });
 
