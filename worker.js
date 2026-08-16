@@ -675,7 +675,9 @@ avatarPreview.style.display = "block";
     profileForm.addEventListener("submit", async (event) => {
       event.preventDefault();
 
-      profileMessage.textContent = "Zapisywanie...";
+profileMessage.textContent = compressedAvatarData
+  ? "TEST: avatar jest w pamięci"
+  : "TEST: avatar jest pusty";
 
       try {
       console.log("AVATAR PRZED WYSŁANIEM:", compressedAvatarData);
