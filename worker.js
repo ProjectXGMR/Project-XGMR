@@ -1136,7 +1136,7 @@ avatarPreview.style.display = "block";
           return;
         }
 
-        profileSection.style.display = "block";
+profileSection.style.display = "none";
 
         document.getElementById("profileUsername").textContent =
           data.profile.username;
