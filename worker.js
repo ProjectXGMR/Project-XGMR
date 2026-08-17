@@ -1463,10 +1463,6 @@ appLogoutButton.addEventListener("click", async () => {
   }
 });
 
-
-const appLogoutButton =
-  document.getElementById("appLogoutButton");
-
 appLogoutButton.addEventListener("click", async () => {
   try {
     const response = await fetch("/api/logout", {
