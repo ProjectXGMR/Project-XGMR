@@ -200,89 +200,93 @@ if (
 
   <title>Profil - ${username}</title>
 
-  <style>
-    * {
-      box-sizing: border-box;
-    }
+ <style>
+  * {
+    box-sizing: border-box;
+  }
 
-    body {
-      margin: 0;
-      min-height: 100vh;
-      font-family: Arial, sans-serif;
-      background: #f3f4f6;
-      color: #111827;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      padding: 24px;
-    }
+  body {
+    margin: 0;
+    min-height: 100vh;
+    font-family: Arial, sans-serif;
+    background: #f3f4f6;
+    color: #111827;
+    padding: 40px 20px;
+  }
 
-    .profile-card {
-      width: 100%;
-      max-width: 520px;
-      background: white;
-      border-radius: 18px;
-      padding: 32px;
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
-    }
+  .profile-card {
+    width: 100%;
+    max-width: 560px;
+    margin: 0 auto;
+    background: white;
+    border-radius: 24px;
+    padding: 36px;
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.08);
+  }
 
-    .avatar {
-      width: 96px;
-      height: 96px;
-      border-radius: 50%;
-      background: #e5e7eb;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin: 0 auto 20px;
-      font-size: 38px;
-      font-weight: bold;
-      color: #4b5563;
-    }
+  .avatar {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    background: #e5e7eb;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 20px;
+    font-size: 44px;
+    font-weight: bold;
+    color: #4b5563;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+  }
 
-    h1 {
-      text-align: center;
-      margin: 0 0 6px;
-    }
+  h1 {
+    text-align: center;
+    margin: 0;
+    font-size: 30px;
+  }
 
-    .username {
-      text-align: center;
-      color: #6b7280;
-      margin-bottom: 28px;
-    }
+  .username {
+    text-align: center;
+    color: #6b7280;
+    margin-top: 6px;
+    margin-bottom: 30px;
+  }
 
-    .section {
-      margin-top: 20px;
-    }
+  .section {
+    margin-top: 24px;
+  }
 
-    .section-title {
-      font-size: 14px;
-      font-weight: bold;
-      color: #6b7280;
-      margin-bottom: 6px;
-      text-transform: uppercase;
-    }
+  .section-title {
+    font-size: 13px;
+    font-weight: bold;
+    color: #6b7280;
+    margin-bottom: 8px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
 
-    .bio {
-      line-height: 1.6;
-    }
+  .bio,
+  .interests {
+    line-height: 1.7;
+    color: #374151;
+  }
 
-    .interests {
-      line-height: 1.6;
-    }
+  .back {
+    display: inline-block;
+    margin-top: 30px;
+    text-decoration: none;
+    color: #2563eb;
+    font-weight: bold;
+  }
 
-    .back {
-      display: inline-block;
-      margin-top: 28px;
-      text-decoration: none;
-      color: #2563eb;
-    }
-
-    #message {
-      text-align: center;
-      color: #dc2626;
-    }
-  </style>
+  #message {
+    text-align: center;
+    color: #dc2626;
+    margin-top: 20px;
+  }
+</style>
 </head>
 
 <body>
