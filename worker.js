@@ -540,6 +540,45 @@ if (data.profile.avatar_data) {
 
 </div>
   <script>
+    const authWelcome = document.getElementById("authWelcome");
+const registerSection = document.getElementById("registerSection");
+const loginSection = document.getElementById("loginSection");
+
+const showRegisterButton =
+  document.getElementById("showRegisterButton");
+
+const showLoginButton =
+  document.getElementById("showLoginButton");
+
+const backToAuthButton =
+  document.getElementById("backToAuthButton");
+
+const backToAuthButtonLogin =
+  document.getElementById("backToAuthButtonLogin");
+
+showRegisterButton.addEventListener("click", () => {
+  authWelcome.style.display = "none";
+  registerSection.style.display = "block";
+  loginSection.style.display = "none";
+});
+
+showLoginButton.addEventListener("click", () => {
+  authWelcome.style.display = "none";
+  registerSection.style.display = "none";
+  loginSection.style.display = "block";
+});
+
+backToAuthButton.addEventListener("click", () => {
+  authWelcome.style.display = "block";
+  registerSection.style.display = "none";
+  loginSection.style.display = "none";
+});
+
+backToAuthButtonLogin.addEventListener("click", () => {
+  authWelcome.style.display = "block";
+  registerSection.style.display = "none";
+  loginSection.style.display = "none";
+});
     const registerForm = document.getElementById("registerForm");
     const registerMessage = document.getElementById("registerMessage");
 
