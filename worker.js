@@ -596,6 +596,76 @@ if (profile.avatar_data) {
   color: #6b7280;
   line-height: 1.6;
 }
+.profile-card {
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.profile-avatar {
+  width: 110px;
+  height: 110px;
+  margin: 0 auto 18px;
+  border-radius: 50%;
+  background: #e5e7eb;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 42px;
+  color: #6b7280;
+  background-size: cover;
+  background-position: center;
+  overflow: hidden;
+}
+
+.profile-name {
+  text-align: center;
+  margin-bottom: 4px;
+  font-size: 24px;
+}
+
+.profile-username {
+  text-align: center;
+  color: #6b7280;
+  margin-bottom: 25px;
+}
+
+.profile-info {
+  background: #f9fafb;
+  border-radius: 14px;
+  padding: 18px;
+  margin-bottom: 20px;
+}
+
+.profile-info p {
+  margin: 8px 0;
+}
+
+.profile-edit-button {
+  margin-top: 10px;
+}
+
+.profile-form {
+  margin-top: 20px;
+  padding: 20px;
+  background: #f9fafb;
+  border-radius: 16px;
+  border: 1px solid #e5e7eb;
+}
+
+.profile-form label {
+  display: block;
+  margin-top: 12px;
+  font-weight: 600;
+}
+
+.profile-form button {
+  margin-top: 14px;
+}
+
+.profile-cancel {
+  background: #e5e7eb;
+  color: #111827;
+}
 </style>
 </head>
 
@@ -781,28 +851,131 @@ if (profile.avatar_data) {
 
 <div id="profileView" style="display:none;">
 
-  <h2>Twój profil</h2>
+  <div class="profile-card">
 
-  <p>
-    <strong>Użytkownik:</strong>
-    <span id="appProfileUsername"></span>
-  </p>
+    <div id="appProfileAvatar" class="profile-avatar">
+      ?
+    </div>
 
-  <div id="appProfileAvatar"
-       style="
-         width:120px;
-         height:120px;
-         margin:20px auto;
-         border-radius:50%;
-         background:#e5e7eb;
-         display:flex;
-         align-items:center;
-         justify-content:center;
-         font-size:40px;
-         overflow:hidden;
-       ">
-    ?
+    <h2 id="appProfileDisplayName" class="profile-name">
+      Użytkownik
+    </h2>
+
+    <div id="appProfileUsername" class="profile-username">
+      @username
+    </div>
+
+    <div class="profile-info">
+      <p>
+        <strong>O mnie</strong>
+      </p>
+
+      <p id="appProfileBio">
+        Brak opisu.
+      </p>
+
+      <p>
+        <strong>Zainteresowania</strong>
+      </p>
+
+      <p id="appProfileInterests">
+        Brak informacji.
+      </p>
+    </div>
+
+    <button
+      id="editProfileButton"
+      type="button"
+      class="profile-edit-button"
+    >
+      Edytuj profil
+    </button>
+
+    <div
+      id="profileEditPanel"
+      class="profile-form"
+      style="display:none;"
+    >
+
+      <h3>Edytuj profil</h3>
+
+      <form id="profileForm">
+
+        <label for="avatarFile">
+          Zdjęcie profilowe
+        </label>
+
+        <input
+          type="file"
+          id="avatarFile"
+          accept="image/jpeg,image/png,image/webp"
+        >
+
+        <img
+          id="avatarPreview"
+          alt="Podgląd zdjęcia profilowego"
+          style="
+            display:none;
+            width:120px;
+            height:120px;
+            object-fit:cover;
+            border-radius:50%;
+            margin:15px auto;
+          "
+        >
+
+        <label for="displayName">
+          Nazwa wyświetlana
+        </label>
+
+        <input
+          type="text"
+          id="displayName"
+          placeholder="Nazwa wyświetlana"
+          required
+        >
+
+        <label for="bio">
+          O mnie
+        </label>
+
+        <textarea
+          id="bio"
+          placeholder="Opowiedz coś o sobie"
+          rows="5"
+        ></textarea>
+
+        <label for="interests">
+          Zainteresowania
+        </label>
+
+        <input
+          type="text"
+          id="interests"
+          placeholder="Gry, muzyka, informatyka..."
+        >
+
+        <button type="submit">
+          Zapisz profil
+        </button>
+
+        <button
+          id="cancelEditButton"
+          type="button"
+          class="profile-cancel"
+        >
+          Anuluj
+        </button>
+
+      </form>
+
+      <p id="profileMessage"></p>
+
+    </div>
+
   </div>
+
+</div>
 
   <h3 id="appProfileDisplayName"></h3>
 
