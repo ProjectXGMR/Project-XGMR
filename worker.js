@@ -158,7 +158,8 @@ async function getCurrentUser(request, env) {
         profiles.display_name,
         profiles.bio,
         profiles.interests,
-        profiles.avatar_url
+        profiles.avatar_url,
+        profiles.avatar_data
       FROM sessions
       JOIN users ON users.id = sessions.user_id
       LEFT JOIN profiles ON profiles.user_id = users.id
