@@ -1208,60 +1208,143 @@ body {
   </div>
 
 </div>
-  <div class="home-cards">
 
-    <div class="home-card">
-      <div class="home-card-icon">👤</div>
-      <h3>Twój profil</h3>
-      <p>
-        Zarządzaj swoim profilem, zdjęciem i informacjami o sobie.
-      </p>
 
-      <button type="button" onclick="profileButton.click()">
-        Otwórz profil
-      </button>
+<div id="messagesView" style="display:none;">
+  <h2>Wiadomości</h2>
+  <p>
+    Tutaj pojawią się Twoje rozmowy.
+  </p>
+</div>
+
+
+<div id="profileView" style="display:none;">
+
+  <div class="profile-card">
+
+    <div id="appProfileAvatar" class="profile-avatar">
+      ?
     </div>
 
-    <div class="home-card">
-      <div class="home-card-icon">💬</div>
-      <h3>Wiadomości</h3>
-      <p>
-        Twoje rozmowy i wiadomości będą dostępne właśnie tutaj.
-      </p>
+    <h2 id="appProfileDisplayName" class="profile-name">
+      Użytkownik
+    </h2>
 
-      <button type="button" onclick="messagesButton.click()">
-        Wiadomości
-      </button>
+    <div id="appProfileUsername" class="profile-username">
+      @username
     </div>
 
-    <div class="home-card">
-      <div class="home-card-icon">⚙️</div>
-      <h3>Ustawienia</h3>
+    <div class="profile-info">
       <p>
-        Dostosuj swoje konto i ustawienia myproject.
+        <strong>O mnie</strong>
       </p>
 
-      <button type="button" onclick="settingsButton.click()">
-        Ustawienia
-      </button>
+      <p id="appProfileBio">
+        Brak opisu.
+      </p>
+
+      <p>
+        <strong>Zainteresowania</strong>
+      </p>
+
+      <p id="appProfileInterests">
+        Brak informacji.
+      </p>
     </div>
 
-  </div>
+    <button
+      id="editProfileButton"
+      type="button"
+      class="profile-edit-button"
+    >
+      Edytuj profil
+    </button>
 
-  <div class="home-info-card">
+    <div
+      id="profileEditPanel"
+      class="profile-form"
+      style="display:none;"
+    >
 
-    <div>
-      <span class="home-info-label">STATUS</span>
-      <h3>Twoje konto jest aktywne</h3>
-      <p>
-        Wszystko działa poprawnie. Możesz korzystać z myproject.
-      </p>
+      <h3>Edytuj profil</h3>
+
+      <form id="profileForm">
+
+        <label for="avatarFile">
+          Zdjęcie profilowe
+        </label>
+
+        <input
+          type="file"
+          id="avatarFile"
+          accept="image/jpeg,image/png,image/webp"
+        >
+
+        <img
+          id="avatarPreview"
+          alt="Podgląd zdjęcia profilowego"
+          style="
+            display:none;
+            width:120px;
+            height:120px;
+            object-fit:cover;
+            border-radius:50%;
+            margin:15px auto;
+          "
+        >
+
+        <label for="displayName">
+          Nazwa wyświetlana
+        </label>
+
+        <input
+          type="text"
+          id="displayName"
+          placeholder="Nazwa wyświetlana"
+          required
+        >
+
+        <label for="bio">
+          O mnie
+        </label>
+
+        <textarea
+          id="bio"
+          placeholder="Opowiedz coś o sobie"
+          rows="5"
+        ></textarea>
+
+        <label for="interests">
+          Zainteresowania
+        </label>
+
+        <input
+          type="text"
+          id="interests"
+          placeholder="Gry, muzyka, informatyka..."
+        >
+
+        <button type="submit">
+          Zapisz profil
+        </button>
+
+        <button
+          id="cancelEditButton"
+          type="button"
+          class="profile-cancel"
+        >
+          Anuluj
+        </button>
+
+      </form>
+
+      <p id="profileMessage"></p>
+
     </div>
 
   </div>
 
 </div>
-
       <div id="messagesView" style="display:none;">
         <h2>Wiadomości</h2>
         <p>
