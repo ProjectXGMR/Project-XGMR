@@ -1313,6 +1313,18 @@ profileSection.style.display = "none";
 
         document.getElementById("interests").value =
           data.profile.interests || "";
+
+          compressedAvatarData = data.profile.avatar_data || null;
+
+          const avatarPreview = document.getElementById("avatarPreview");
+
+if (data.profile.avatar_data) {
+  avatarPreview.src = data.profile.avatar_data;
+  avatarPreview.style.display = "block";
+} else {
+  avatarPreview.src = "";
+  avatarPreview.style.display = "none";
+}
      
       profileForm.dataset.savedDisplayName =
   data.profile.display_name || "";
