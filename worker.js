@@ -1366,9 +1366,20 @@ body: JSON.stringify({
           ? "Profil został zapisany!"
           : data.error;
 
-        if (data.success) {
-          await loadProfile();
-        }
+if (data.success) {
+  await loadProfile();
+
+  document.getElementById("appProfileDisplayName").textContent =
+    document.getElementById("displayName").value;
+
+  document.getElementById("appProfileBio").textContent =
+    document.getElementById("bio").value || "Brak opisu.";
+
+  document.getElementById("appProfileInterests").textContent =
+    document.getElementById("interests").value || "Brak informacji.";
+
+  profileEditPanel.style.display = "none";
+}
       } catch (error) {
         profileMessage.textContent =
           "Wystąpił błąd połączenia.";
