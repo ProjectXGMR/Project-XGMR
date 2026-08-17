@@ -302,10 +302,10 @@ body::after {
     linear-gradient(
       90deg,
       #07050d 0%,
-      rgba(7,5,13,0.45) 30%,
-      rgba(7,5,13,0.15) 100%
+      rgba(7,5,13,0.55) 25%,
+      rgba(7,5,13,0.20) 100%
     ),
-    url("https://github.com/ProjectXGMR/Project-XGMR/blob/main/login-bg.jpg?raw=true");
+    url("https://picsum.photos/1200/900");
 
   background-size: cover;
   background-position: center;
@@ -317,6 +317,44 @@ body::after {
   z-index: 0;
 
   animation: backgroundMove 18s ease-in-out infinite alternate;
+}
+
+
+body::before {
+  content: "";
+
+  position: fixed;
+
+  top: 0;
+  left: 40%;
+
+  width: 120px;
+  height: 100vh;
+
+  background:
+    linear-gradient(
+      90deg,
+      rgba(139,92,246,0),
+      rgba(139,92,246,0.45),
+      rgba(124,58,237,0)
+    );
+
+  filter: blur(25px);
+
+  z-index: 1;
+}
+
+
+@keyframes backgroundMove {
+
+  from {
+    background-position: center center;
+  }
+
+  to {
+    background-position: 55% 45%;
+  }
+
 }
 body::before {
   content: "";
