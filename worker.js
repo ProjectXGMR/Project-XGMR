@@ -788,39 +788,43 @@ backToAuthButtonLogin.addEventListener("click", () => {
     const loginForm = document.getElementById("loginForm");
     const loginMessage = document.getElementById("loginMessage");
 
-    loginForm.addEventListener("submit", async (event) => {
-      event.preventDefault();
+loginForm.addEventListener("submit", async (event) => {
+  event.preventDefault();
 
-      loginMessage.textContent = "Logowanie...";
+  loginMessage.textContent = "Logowanie...";
 
-      try {
-        const response = await fetch("/api/login", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json"
-          },
-          body: JSON.stringify({
-            email: document.getElementById("loginEmail").value,
-            password: document.getElementById("loginPassword").value
-          })
-        });
+  try {
+    const response = await fetch("/api/login", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        email: document.getElementById("loginEmail").value,
+        password: document.getElementById("loginPassword").value
+      })
+    });
 
-        const data = await response.json();
+    const data = await response.json();
 
-if (data.success) {
-  loginMessage.textContent = "Zalogowano pomyślnie!";
+    if (data.success) {
+      loginMessage.textContent = "Zalogowano pomyślnie!";
 
-  authSection.style.display = "none";
-  appSection.style.display = "block";
+      document.getElementById("authSection").style.display = "none";
+      document.getElementById("appSection").style.display = "block";
 
-  await loadProfile();
-} else {
-  loginMessage.textContent = data.error;
-}
-      } catch (error) {
-        loginMessage.textContent =
-          "Wystąpił błąd połączenia.";
-      }
+      await loadProfile();
+    } else {
+      loginMessage.textContent = data.error;
+    }
+
+  } catch (error) {
+    console.error("Błąd logowania:", error);
+
+    loginMessage.textContent =
+      "Wystąpił błąd połączenia.";
+  }
+});
         const profileSection = document.getElementById("profileSection");
    const appSection = document.getElementById("appSection");
 const authSection = document.getElementById("authSection");
