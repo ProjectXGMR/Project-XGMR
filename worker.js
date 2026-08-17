@@ -298,28 +298,10 @@ body::after {
   width: 60%;
   height: 100vh;
 
-  background:
-    linear-gradient(
-      90deg,
-      #07050d 0%,
-      rgba(7,5,13,0.55) 25%,
-      rgba(7,5,13,0.20) 100%
-    ),
-    url("https://picsum.photos/1200/900");
+  background: red;
 
-  background-size: cover;
-  background-position: center;
-
-  filter: blur(4px);
-
-  transform: scale(1.05);
-
-  z-index: 0;
-
-  animation: backgroundMove 18s ease-in-out infinite alternate;
+  z-index: 9999;
 }
-
-
 body::before {
   content: "";
 
