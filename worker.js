@@ -1080,6 +1080,8 @@ showRegisterButton.addEventListener("click", () => {
 });
 
 showLoginButton.addEventListener("click", () => {
+  console.log("KLIK: ZALOGUJ");
+
   authWelcome.style.display = "none";
   registerSection.style.display = "none";
   loginSection.style.display = "block";
