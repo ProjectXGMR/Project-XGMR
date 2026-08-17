@@ -580,6 +580,15 @@ const cancelEditButton =
   document.getElementById("cancelEditButton");
 
 cancelEditButton.addEventListener("click", () => {
+  document.getElementById("displayName").value =
+    profileForm.dataset.savedDisplayName || "";
+
+  document.getElementById("bio").value =
+    profileForm.dataset.savedBio || "";
+
+  document.getElementById("interests").value =
+    profileForm.dataset.savedInterests || "";
+
   profileForm.style.display = "none";
 });
 
