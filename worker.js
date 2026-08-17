@@ -1032,7 +1032,6 @@ body: JSON.stringify({
     });
 
     loadProfile();
-    });
   </script>
 </body>
 </html>`,
