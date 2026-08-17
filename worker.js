@@ -288,7 +288,6 @@ if (
     margin-top: 20px;
   }
 
-
 .login-background {
 
   position: fixed;
@@ -296,22 +295,40 @@ if (
   top: 0;
   right: 0;
 
-  width: 60%;
+  width: 58%;
   height: 100vh;
 
-  background: red;
+  background-image:
+    linear-gradient(
+      90deg,
+      #07050d 0%,
+      rgba(7,5,13,0.45) 25%,
+      rgba(7,5,13,0.05) 100%
+    ),
+url("https://picsum.photos/1200/900")
 
   background-size: cover;
   background-position: center;
 
-  filter: blur(4px);
+  filter: blur(5px);
 
   transform: scale(1.05);
 
-  z-index: 9999;
+  z-index: 1;
+
+  animation: backgroundMove 20s ease-in-out infinite alternate;
+
+@keyframes backgroundMove {
+
+  from {
+    transform: scale(1.05) translateX(0);
+  }
+
+  to {
+    transform: scale(1.08) translateX(-20px);
+  }
 
 }
-
 </style>
 </head>
 
