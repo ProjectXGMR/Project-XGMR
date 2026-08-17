@@ -941,9 +941,12 @@ if (data.success) {
   loginMessage.textContent = "Zalogowano pomyślnie!";
 
   document.getElementById("authSection").style.display = "none";
+  profileSection.style.display = "none";
   appSection.style.display = "block";
 
   await loadProfile();
+
+  profileSection.style.display = "none";
 } else {
   loginMessage.textContent = data.error;
 }
