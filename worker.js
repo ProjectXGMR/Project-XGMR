@@ -1516,6 +1516,8 @@ return json({
   }
 });
 
+      }
+    
     // Aktualizacja profilu
     if (url.pathname === "/api/profile" && request.method === "PUT") {
       try {
