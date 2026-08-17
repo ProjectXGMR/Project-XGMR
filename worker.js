@@ -723,21 +723,72 @@ if (data.profile.avatar_data) {
 
 <div id="appSection" style="display:none;">
 
-  <h2>Witaj w myproject!</h2>
+  <div class="app-header">
+    <h1>myproject</h1>
+    <span id="appUsername"></span>
+  </div>
 
-  <p>
-    Zostałeś pomyślnie zalogowany.
-  </p>
+  <div class="app-layout">
 
-  <div class="dashboard-placeholder">
-    <h3>Twój panel główny</h3>
-    <p>
-      Tutaj wkrótce pojawią się czaty, wiadomości i inne funkcje.
-    </p>
+    <aside class="app-sidebar">
+
+      <button id="homeButton" type="button">
+        Główna
+      </button>
+
+      <button id="messagesButton" type="button">
+        Wiadomości
+      </button>
+
+      <button id="profileButton" type="button">
+        Profil
+      </button>
+
+      <button id="settingsButton" type="button">
+        Ustawienia
+      </button>
+
+      <button id="appLogoutButton" type="button">
+        Wyloguj
+      </button>
+
+    </aside>
+
+    <main class="app-content">
+
+      <div id="homeView">
+        <h2>Witaj!</h2>
+        <p>
+          To jest Twój główny panel myproject.
+        </p>
+      </div>
+
+      <div id="messagesView" style="display:none;">
+        <h2>Wiadomości</h2>
+        <p>
+          Tutaj pojawią się Twoje rozmowy.
+        </p>
+      </div>
+
+      <div id="profileView" style="display:none;">
+        <h2>Twój profil</h2>
+        <p>
+          Tutaj będziemy zarządzać profilem.
+        </p>
+      </div>
+
+      <div id="settingsView" style="display:none;">
+        <h2>Ustawienia</h2>
+        <p>
+          Tutaj pojawią się ustawienia konta.
+        </p>
+      </div>
+
+    </main>
+
   </div>
 
 </div>
-
 <div id="profileSection" style="display:none;">
 
   <hr>
