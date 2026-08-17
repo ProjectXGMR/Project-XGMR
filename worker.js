@@ -476,6 +476,8 @@ body {
 
     color: #f5f3ff;
 
+border: 10px solid red;
+
     display: flex;
     align-items: stretch;
     justify-content: flex-start;
