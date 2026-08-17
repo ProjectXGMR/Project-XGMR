@@ -770,12 +770,47 @@ if (data.profile.avatar_data) {
         </p>
       </div>
 
-      <div id="profileView" style="display:none;">
-        <h2>Twój profil</h2>
-        <p>
-          Tutaj będziemy zarządzać profilem.
-        </p>
-      </div>
+<div id="profileView" style="display:none;">
+
+  <h2>Twój profil</h2>
+
+  <p>
+    <strong>Użytkownik:</strong>
+    <span id="appProfileUsername"></span>
+  </p>
+
+  <div id="appProfileAvatar"
+       style="
+         width:120px;
+         height:120px;
+         margin:20px auto;
+         border-radius:50%;
+         background:#e5e7eb;
+         display:flex;
+         align-items:center;
+         justify-content:center;
+         font-size:40px;
+         overflow:hidden;
+       ">
+    ?
+  </div>
+
+  <h3 id="appProfileDisplayName"></h3>
+
+  <p id="appProfileBio">
+    Brak opisu.
+  </p>
+
+  <p>
+    <strong>Zainteresowania:</strong>
+    <span id="appProfileInterests">Brak informacji.</span>
+  </p>
+
+  <button id="appEditProfileButton" type="button">
+    Edytuj profil
+  </button>
+
+</div>
 
       <div id="settingsView" style="display:none;">
         <h2>Ustawienia</h2>
@@ -1209,13 +1244,54 @@ messagesButton.addEventListener("click", () => {
   showView(messagesView);
 });
 
-profileButton.addEventListener("click", () => {
+profileButton.addEventListener("click", async () => {
   showView(profileView);
+  await loadAppProfile();
 });
 
 settingsButton.addEventListener("click", () => {
   showView(settingsView);
 });
+  async function loadAppProfile() {
+  try {
+    const response = await fetch("/api/profile");
+    const data = await response.json();
+
+    if (!data.success) {
+      return;
+    }
+
+    const profile = data.profile;
+
+    document.getElementById("appProfileUsername").textContent =
+      profile.username || "";
+
+    document.getElementById("appProfileDisplayName").textContent =
+      profile.display_name || profile.username || "";
+
+    document.getElementById("appProfileBio").textContent =
+      profile.bio || "Brak opisu.";
+
+    document.getElementById("appProfileInterests").textContent =
+      profile.interests || "Brak informacji.";
+
+    const avatar = document.getElementById("appProfileAvatar");
+
+    if (profile.avatar_data) {
+      avatar.textContent = "";
+      avatar.style.backgroundImage =
+        "url('" + profile.avatar_data + "')";
+      avatar.style.backgroundSize = "cover";
+      avatar.style.backgroundPosition = "center";
+    } else {
+      avatar.style.backgroundImage = "none";
+      avatar.textContent = "?";
+    }
+
+  } catch (error) {
+    console.error("Nie udało się załadować profilu:", error);
+  }
+}
   </script>
 </body>
 </html>`,
