@@ -335,16 +335,24 @@ if (
 
         document.getElementById("displayName").textContent =
           data.profile.display_name || data.profile.username;
-          const avatar = document.getElementById("avatar");
+const avatar = document.getElementById("appProfileAvatar");
 
-if (data.profile.avatar_data) {
+if (profile.avatar_data) {
   avatar.textContent = "";
-  avatar.style.backgroundImage =
-    "url('" + data.profile.avatar_data + "')";
-  avatar.style.backgroundSize = "cover";
-  avatar.style.backgroundPosition = "center";
+
+  const img = document.createElement("img");
+  img.src = profile.avatar_data;
+  img.alt = "Zdjęcie profilowe";
+
+  img.style.width = "100%";
+  img.style.height = "100%";
+  img.style.objectFit = "cover";
+  img.style.display = "block";
+
+  avatar.innerHTML = "";
+  avatar.appendChild(img);
 } else {
-  avatar.textContent = "?";
+  avatar.innerHTML = "?";
 }
 
         document.getElementById("username").textContent =
