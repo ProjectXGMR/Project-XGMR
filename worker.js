@@ -287,6 +287,71 @@ if (
     color: #dc2626;
     margin-top: 20px;
   }
+body::after {
+  content: "";
+
+  position: fixed;
+
+  top: 0;
+  right: 0;
+
+  width: 60%;
+  height: 100vh;
+
+  background:
+    linear-gradient(
+      90deg,
+      #07050d 0%,
+      rgba(7,5,13,0.55) 25%,
+      rgba(7,5,13,0.25) 100%
+    ),
+    url("https://images.openai.com/static-rsc-4/zCxTKfYIFmjNl0pGiMiA0j7e58vD-C9IyF4QeU54Oy15uXyWHKGLzbSjAsUsj7LVZBqljYzYIwPsmjohvq3Yvz8udGz-3uH5PRQX1jdTvAUe1jCBud-YtrUnP5liif_grtIzsQFoHDnR7jKBIw2o6N5FSSbsrFcgUhdv0kzPaVg?purpose=inline");
+
+  background-size: cover;
+  background-position: center;
+
+  filter: blur(3px);
+
+  transform: scale(1.05);
+
+  z-index: -2;
+
+  animation: backgroundMove 18s ease-in-out infinite alternate;
+}
+body::before {
+  content: "";
+
+  position: fixed;
+
+  top: 0;
+  left: 40%;
+
+  width: 120px;
+  height: 100vh;
+
+  background:
+    linear-gradient(
+      90deg,
+      rgba(139,92,246,0),
+      rgba(139,92,246,0.35),
+      rgba(124,58,237,0)
+    );
+
+  filter: blur(25px);
+
+  z-index: -1;
+}
+@keyframes backgroundMove {
+
+  from {
+    background-position: center center;
+  }
+
+  to {
+    background-position: 55% 45%;
+  }
+
+}
 </style>
 </head>
 
