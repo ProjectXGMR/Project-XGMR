@@ -510,6 +510,22 @@ if (data.profile.avatar_data) {
   transform: translateY(-1px);
   opacity: 0.9;
 }
+.dashboard-placeholder {
+  margin-top: 25px;
+  padding: 20px;
+  border-radius: 14px;
+  background: #f3f4f6;
+  text-align: center;
+}
+
+.dashboard-placeholder h3 {
+  margin-top: 0;
+}
+
+.dashboard-placeholder p {
+  color: #6b7280;
+  line-height: 1.6;
+}
 </style>
 </head>
 
@@ -612,6 +628,24 @@ if (data.profile.avatar_data) {
   </div>
 
 </div>
+
+<div id="appSection" style="display:none;">
+
+  <h2>Witaj w myproject!</h2>
+
+  <p>
+    Zostałeś pomyślnie zalogowany.
+  </p>
+
+  <div class="dashboard-placeholder">
+    <h3>Twój panel główny</h3>
+    <p>
+      Tutaj wkrótce pojawią się czaty, wiadomości i inne funkcje.
+    </p>
+  </div>
+
+</div>
+
 <div id="profileSection" style="display:none;">
 
   <hr>
@@ -773,14 +807,23 @@ backToAuthButtonLogin.addEventListener("click", () => {
 
         const data = await response.json();
 
-        loginMessage.textContent = data.success
-          ? "Zalogowano pomyślnie!"
-          : data.error;
+if (data.success) {
+  loginMessage.textContent = "Zalogowano pomyślnie!";
+
+  authSection.style.display = "none";
+  appSection.style.display = "block";
+
+  await loadProfile();
+} else {
+  loginMessage.textContent = data.error;
+}
       } catch (error) {
         loginMessage.textContent =
           "Wystąpił błąd połączenia.";
       }
         const profileSection = document.getElementById("profileSection");
+   const appSection = document.getElementById("appSection");
+const authSection = document.getElementById("authSection");
     const profileForm = document.getElementById("profileForm");
     const avatarFile = document.getElementById("avatarFile");
 const avatarPreview = document.getElementById("avatarPreview");
