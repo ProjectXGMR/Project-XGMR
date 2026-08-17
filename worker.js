@@ -1504,18 +1504,17 @@ console.log("AVATAR DATA:", profile.avatar_data);
         );
       }
 
-      return json({
-        success: true,
-        profile: {
-          username: user.username,
-          display_name: user.display_name,
-          bio: user.bio,
-          interests: user.interests,
-          avatar_url: user.avatar_url
-          avatar_data: user.avatar_data
-        }
-      });
-    }
+return json({
+  success: true,
+  profile: {
+    username: user.username,
+    display_name: user.display_name,
+    bio: user.bio,
+    interests: user.interests,
+    avatar_url: user.avatar_url,
+    avatar_data: user.avatar_data
+  }
+});
 
     // Aktualizacja profilu
     if (url.pathname === "/api/profile" && request.method === "PUT") {
@@ -1697,7 +1696,8 @@ profiles.avatar_data
             display_name: user.display_name,
             bio: user.bio,
             interests: user.interests,
-            avatar_url: user.avatar_url
+            avatar_url: user.avatar_url,
+            avatar_data: user.avatar_data
           }
         });
       } catch (error) {
