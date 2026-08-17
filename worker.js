@@ -1390,6 +1390,20 @@ if (data.success) {
   document.getElementById("appProfileInterests").textContent =
     document.getElementById("interests").value || "Brak informacji.";
 
+const appProfileAvatar =
+  document.getElementById("appProfileAvatar");
+
+if (compressedAvatarData) {
+  appProfileAvatar.textContent = "";
+  appProfileAvatar.style.backgroundImage =
+    "url('" + compressedAvatarData + "')";
+  appProfileAvatar.style.backgroundSize = "cover";
+  appProfileAvatar.style.backgroundPosition = "center";
+} else {
+  appProfileAvatar.textContent = "?";
+  appProfileAvatar.style.backgroundImage = "none";
+}
+  
   profileEditPanel.style.display = "none";
 }
       } catch (error) {
