@@ -1032,7 +1032,7 @@ if (url.pathname.startsWith("/api/users/") && request.method === "GET") {
 
     const user = await env.DB
       .prepare(
- SELECT
+ `SELECT
   users.username,
   profiles.display_name,
   profiles.bio,
