@@ -1439,11 +1439,6 @@ logoutButton.addEventListener("click", async () => {
     console.error("Błąd wylogowania:", error);
   }
 });
-
-
-const appLogoutButton =
-  document.getElementById("appLogoutButton");
-
 appLogoutButton.addEventListener("click", async () => {
   try {
     const response = await fetch("/api/logout", {
