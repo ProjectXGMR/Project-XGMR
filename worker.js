@@ -977,23 +977,6 @@ if (profile.avatar_data) {
 
 </div>
 
-  <h3 id="appProfileDisplayName"></h3>
-
-  <p id="appProfileBio">
-    Brak opisu.
-  </p>
-
-  <p>
-    <strong>Zainteresowania:</strong>
-    <span id="appProfileInterests">Brak informacji.</span>
-  </p>
-
-  <button id="appEditProfileButton" type="button">
-    Edytuj profil
-  </button>
-
-</div>
-
       <div id="settingsView" style="display:none;">
         <h2>Ustawienia</h2>
         <p>
