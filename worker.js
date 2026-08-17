@@ -576,6 +576,13 @@ let compressedAvatarData = null;
 const editProfileButton =
   document.getElementById("editProfileButton");
 
+const cancelEditButton =
+  document.getElementById("cancelEditButton");
+
+cancelEditButton.addEventListener("click", () => {
+  profileForm.style.display = "none";
+});
+
 editProfileButton.addEventListener("click", () => {
   profileForm.style.display = "block";
 });
