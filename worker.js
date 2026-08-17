@@ -1512,6 +1512,7 @@ console.log("AVATAR DATA:", profile.avatar_data);
           bio: user.bio,
           interests: user.interests,
           avatar_url: user.avatar_url
+          avatar_data: user.avatar_data
         }
       });
     }
