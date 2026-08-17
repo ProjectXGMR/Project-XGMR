@@ -537,13 +537,11 @@ if (profile.avatar_data) {
 }
 #appSection {
   width: 100%;
-  max-width: 1000px;
-  background: white;
-  border-radius: 20px;
-  box-shadow: 0 12px 35px rgba(0, 0, 0, 0.08);
-  overflow: hidden;
+  min-height: 100vh;
+  margin: 0;
+  padding: 0;
+  background: #07050d;
 }
-
 /* =========================
    MYPROJECT — DARK PURPLE
    ========================= */
@@ -576,6 +574,18 @@ if (profile.avatar_data) {
   font-size: 14px;
 }
 
+html,
+body {
+  margin: 0;
+  min-height: 100%;
+  background: #07050d;
+  color: #f5f3ff;
+}
+
+body {
+  min-height: 100vh;
+  overflow-x: hidden;
+}
 
 /* =========================
    GŁÓWNY UKŁAD
@@ -583,26 +593,21 @@ if (profile.avatar_data) {
 
 .app-layout {
   display: flex;
-  min-height: 500px;
+  min-height: calc(100vh - 73px);
 
   background:
     radial-gradient(
-      circle at 80% 20%,
-      rgba(124, 58, 237, 0.18),
-      transparent 32%
-    ),
-    radial-gradient(
-      circle at 20% 80%,
-      rgba(139, 92, 246, 0.10),
+      circle at 75% 15%,
+      rgba(124, 58, 237, 0.20),
       transparent 30%
     ),
-    #08060d;
-
-  color: #f5f3ff;
-
-  position: relative;
+    radial-gradient(
+      circle at 35% 85%,
+      rgba(139, 92, 246, 0.10),
+      transparent 32%
+    ),
+    #07050d;
 }
-
 
 /* =========================
    SIDEBAR
@@ -923,11 +928,100 @@ if (profile.avatar_data) {
   background: rgba(255, 255, 255, 0.10);
   color: #f5f3ff;
 }
+
+#homeView {
+  position: relative;
+  min-height: 100%;
+  padding: 45px;
+  box-sizing: border-box;
+}
+
+.home-welcome {
+  position: relative;
+  z-index: 1;
+
+  max-width: 700px;
+  padding-top: 25px;
+}
+
+.home-eyebrow {
+  display: inline-block;
+  margin-bottom: 10px;
+
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 2px;
+
+  color: #a78bfa;
+}
+
+.home-welcome h2 {
+  margin: 0;
+
+  font-size: 42px;
+  line-height: 1.1;
+
+  color: #ffffff;
+}
+
+.home-welcome p {
+  margin-top: 15px;
+
+  font-size: 17px;
+  color: #a1a1aa;
+}
+
+
+/* mała karta statusu */
+
+.home-status {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+
+  width: fit-content;
+  margin-top: 55px;
+  padding: 16px 20px;
+
+  background: rgba(255, 255, 255, 0.035);
+
+  border: 1px solid rgba(167, 139, 250, 0.14);
+  border-radius: 14px;
+
+  backdrop-filter: blur(15px);
+  -webkit-backdrop-filter: blur(15px);
+}
+
+.home-status strong {
+  display: block;
+  color: #f5f3ff;
+  font-size: 14px;
+}
+
+.home-status span {
+  display: block;
+  margin-top: 3px;
+  color: #71717a;
+  font-size: 13px;
+}
+
+.status-dot {
+  width: 9px;
+  height: 9px;
+
+  border-radius: 50%;
+
+  background: #a78bfa;
+
+  box-shadow:
+    0 0 12px rgba(167, 139, 250, 0.8),
+    0 0 25px rgba(139, 92, 246, 0.45);
+}
+
 </style>
 </head>
 
 <body>
-  <h1>myproject</h1>
 
 <div id="authSection">
 
@@ -1094,18 +1188,26 @@ if (profile.avatar_data) {
 
 <div id="homeView">
 
-  <div class="home-hero">
+  <div class="home-welcome">
+    <span class="home-eyebrow">MYPROJECT</span>
+
+    <h2>Witaj ponownie!</h2>
+
+    <p>
+      Twoje miejsce w sieci.
+    </p>
+  </div>
+
+  <div class="home-status">
+    <div class="status-dot"></div>
+
     <div>
-      <span class="home-eyebrow">MYPROJECT</span>
-
-      <h2>Witaj ponownie!</h2>
-
-      <p>
-        Miło Cię widzieć. To jest Twoje centrum myproject.
-      </p>
+      <strong>Konto aktywne</strong>
+      <span>Wszystko działa poprawnie.</span>
     </div>
   </div>
 
+</div>
   <div class="home-cards">
 
     <div class="home-card">
