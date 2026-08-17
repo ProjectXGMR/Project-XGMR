@@ -1416,6 +1416,33 @@ if (compressedAvatarData) {
       
 const appLogoutButton =
   document.getElementById("appLogoutButton");
+logoutButton.addEventListener("click", async () => {
+  try {
+    const response = await fetch("/api/logout", {
+      method: "POST"
+    });
+
+    const data = await response.json();
+
+    if (data.success) {
+      profileSection.style.display = "none";
+      appSection.style.display = "none";
+      authSection.style.display = "block";
+
+      authWelcome.style.display = "block";
+      registerSection.style.display = "none";
+      loginSection.style.display = "none";
+
+      loginMessage.textContent = "Wylogowano.";
+    }
+  } catch (error) {
+    console.error("Błąd wylogowania:", error);
+  }
+});
+
+
+const appLogoutButton =
+  document.getElementById("appLogoutButton");
 
 appLogoutButton.addEventListener("click", async () => {
   try {
@@ -1427,6 +1454,7 @@ appLogoutButton.addEventListener("click", async () => {
 
     if (data.success) {
       appSection.style.display = "none";
+      profileSection.style.display = "none";
       authSection.style.display = "block";
 
       authWelcome.style.display = "block";
@@ -1434,14 +1462,11 @@ appLogoutButton.addEventListener("click", async () => {
       loginSection.style.display = "none";
 
       loginMessage.textContent = "Wylogowano.";
-    } else {
-      console.error("Nie udało się wylogować:", data.error);
     }
   } catch (error) {
     console.error("Błąd wylogowania:", error);
   }
 });
-
     loadProfile();
  const homeButton = document.getElementById("homeButton");
 const messagesButton = document.getElementById("messagesButton");
