@@ -1182,6 +1182,40 @@ body: JSON.stringify({
     });
 
     loadProfile();
+ const homeButton = document.getElementById("homeButton");
+const messagesButton = document.getElementById("messagesButton");
+const profileButton = document.getElementById("profileButton");
+const settingsButton = document.getElementById("settingsButton");
+
+const homeView = document.getElementById("homeView");
+const messagesView = document.getElementById("messagesView");
+const profileView = document.getElementById("profileView");
+const settingsView = document.getElementById("settingsView");
+
+function showView(view) {
+  homeView.style.display = "none";
+  messagesView.style.display = "none";
+  profileView.style.display = "none";
+  settingsView.style.display = "none";
+
+  view.style.display = "block";
+}
+
+homeButton.addEventListener("click", () => {
+  showView(homeView);
+});
+
+messagesButton.addEventListener("click", () => {
+  showView(messagesView);
+});
+
+profileButton.addEventListener("click", () => {
+  showView(profileView);
+});
+
+settingsButton.addEventListener("click", () => {
+  showView(settingsView);
+});
   </script>
 </body>
 </html>`,
