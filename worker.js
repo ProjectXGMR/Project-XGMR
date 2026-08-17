@@ -1270,6 +1270,9 @@ settingsButton.addEventListener("click", () => {
     }
 
     const profile = data.profile;
+   
+    console.log("PROFIL W PANELU:", profile);
+console.log("AVATAR DATA:", profile.avatar_data);
 
     document.getElementById("appProfileUsername").textContent =
       profile.username || "";
