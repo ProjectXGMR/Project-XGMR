@@ -450,7 +450,7 @@ if (data.profile.avatar_data) {
 
   <p><strong>Użytkownik:</strong> <span id="profileUsername"></span></p>
 
-  <form id="profileForm">
+<form id="profileForm" style="display:none;">
 <label for="avatarFile">Zdjęcie profilowe</label>
 
 <br>
