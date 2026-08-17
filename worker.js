@@ -395,31 +395,66 @@ if (profile.avatar_data) {
     box-sizing: border-box;
   }
 
-  body {
+body {
     margin: 0;
     min-height: 100vh;
+
     font-family: Arial, sans-serif;
-    background: #f3f4f6;
-    color: #111827;
+
+    background:
+      radial-gradient(
+        circle at 75% 30%,
+        rgba(139, 92, 246, 0.25),
+        transparent 35%
+      ),
+      radial-gradient(
+        circle at 90% 80%,
+        rgba(124, 58, 237, 0.18),
+        transparent 30%
+      ),
+      #07050d;
+
+    color: #f5f3ff;
+
     display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 24px;
-  }
+    align-items: stretch;
+    justify-content: flex-start;
 
-  #authSection,
-  #profileSection {
-    width: 100%;
+    padding: 0;
+
+    overflow: hidden;
+}
+
+#authSection,
+#profileSection {
+
+    width: 42%;
+    min-width: 380px;
     max-width: 520px;
-    background: white;
-    padding: 32px;
-    border-radius: 20px;
-    box-shadow: 0 12px 35px rgba(0, 0, 0, 0.08);
-  }
 
+    min-height: 100vh;
+
+    padding: 55px;
+
+    background:
+      rgba(15, 12, 24, 0.72);
+
+    border-right:
+      1px solid rgba(139, 92, 246, 0.18);
+
+    backdrop-filter: blur(25px);
+    -webkit-backdrop-filter: blur(25px);
+
+    box-shadow:
+      20px 0 60px rgba(0,0,0,0.35);
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
   h1,
   h2 {
-    text-align: center;
+    text-align: left;
   }
 
   input,
@@ -436,18 +471,44 @@ if (profile.avatar_data) {
     resize: vertical;
   }
 
-  button {
-    width: 100%;
-    padding: 12px;
-    margin-top: 12px;
-    border: none;
-    border-radius: 10px;
-    background: #2563eb;
-    color: white;
-    font-size: 15px;
-    cursor: pointer;
-  }
+button {
 
+    width: 100%;
+
+    padding: 13px;
+
+    margin-top: 12px;
+
+    border: 1px solid rgba(167,139,250,0.25);
+
+    border-radius: 12px;
+
+    background:
+      linear-gradient(
+        135deg,
+        #7c3aed,
+        #8b5cf6
+      );
+
+    color:white;
+
+    font-size:15px;
+
+    cursor:pointer;
+
+    transition:
+      transform .2s ease,
+      box-shadow .2s ease;
+}
+
+
+button:hover {
+
+    transform: translateY(-2px);
+
+    box-shadow:
+      0 10px 30px rgba(139,92,246,0.35);
+}
   button:hover {
     opacity: 0.9;
   }
@@ -473,14 +534,21 @@ if (profile.avatar_data) {
     margin-top: 15px;
   }
 .brand {
-  text-align: center;
-  margin-bottom: 35px;
+  text-align: left;
+  margin-bottom: 45px;
 }
 
 .brand h1 {
   margin: 0;
-  font-size: 42px;
-  letter-spacing: -1px;
+
+  font-size: 52px;
+
+  letter-spacing: -2px;
+
+  color: #ffffff;
+
+  text-shadow:
+    0 0 25px rgba(139,92,246,0.45);
 }
 
 .brand p {
