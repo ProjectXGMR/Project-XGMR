@@ -692,6 +692,16 @@ avatarPreview.style.display = "block";
 
         document.getElementById("interests").value =
           data.profile.interests || "";
+     
+      profileForm.dataset.savedDisplayName =
+  data.profile.display_name || "";
+
+profileForm.dataset.savedBio =
+  data.profile.bio || "";
+
+profileForm.dataset.savedInterests =
+  data.profile.interests || "";
+    
       } catch (error) {
         profileSection.style.display = "none";
       }
