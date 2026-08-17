@@ -299,14 +299,7 @@ if (
   width: 60%;
   height: 100vh;
 
-  background:
-    linear-gradient(
-      90deg,
-      #07050d 0%,
-      rgba(7,5,13,0.55) 35%,
-      rgba(7,5,13,0.15) 100%
-    ),
-    url("https://github.com/ProjectXGMR/Project-XGMR/blob/main/login-bg.jpg?raw=true");
+  background: red;
 
   background-size: cover;
   background-position: center;
@@ -315,7 +308,7 @@ if (
 
   transform: scale(1.05);
 
-  z-index: 0;
+  z-index: 9999;
 
 }
 
