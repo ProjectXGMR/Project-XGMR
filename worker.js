@@ -444,6 +444,10 @@ if (data.profile.avatar_data) {
 
   <h2>Twój profil</h2>
 
+<button id="editProfileButton" type="button">
+  Edytuj profil
+</button>
+
   <p><strong>Użytkownik:</strong> <span id="profileUsername"></span></p>
 
   <form id="profileForm">
