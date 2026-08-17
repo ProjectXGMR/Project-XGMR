@@ -577,14 +577,15 @@ if (profile.avatar_data) {
 html,
 body {
   margin: 0;
-  min-height: 100%;
+  width: 100%;
+  height: 100%;
   background: #07050d;
   color: #f5f3ff;
+  overflow: hidden;
 }
 
 body {
   min-height: 100vh;
-  overflow-x: hidden;
 }
 
 /* =========================
@@ -593,7 +594,8 @@ body {
 
 .app-layout {
   display: flex;
-  min-height: calc(100vh - 73px);
+  height: calc(100vh - 73px);
+  min-height: 0;
 
   background:
     radial-gradient(
@@ -686,12 +688,15 @@ body {
 
 .app-content {
   flex: 1;
+  min-width: 0;
+  min-height: 0;
+
   padding: 40px;
+  box-sizing: border-box;
 
-  position: relative;
-  overflow: hidden;
+  overflow-y: auto;
+  overflow-x: hidden;
 }
-
 .app-content::before {
   content: "";
 
