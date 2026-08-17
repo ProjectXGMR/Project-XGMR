@@ -287,8 +287,9 @@ if (
     color: #dc2626;
     margin-top: 20px;
   }
-body::after {
-  content: "";
+
+
+.login-background {
 
   position: fixed;
 
@@ -298,80 +299,26 @@ body::after {
   width: 60%;
   height: 100vh;
 
-  background: red;
-
-  z-index: 9999;
-}
-body::before {
-  content: "";
-
-  position: fixed;
-
-  top: 0;
-  left: 40%;
-
-  width: 120px;
-  height: 100vh;
-
   background:
     linear-gradient(
       90deg,
-      rgba(139,92,246,0),
-      rgba(139,92,246,0.45),
-      rgba(124,58,237,0)
-    );
+      #07050d 0%,
+      rgba(7,5,13,0.55) 35%,
+      rgba(7,5,13,0.15) 100%
+    ),
+    url("https://github.com/ProjectXGMR/Project-XGMR/blob/main/login-bg.jpg?raw=true");
 
-  filter: blur(25px);
+  background-size: cover;
+  background-position: center;
 
-  z-index: 1;
-}
+  filter: blur(4px);
 
+  transform: scale(1.05);
 
-@keyframes backgroundMove {
-
-  from {
-    background-position: center center;
-  }
-
-  to {
-    background-position: 55% 45%;
-  }
+  z-index: 0;
 
 }
-body::before {
-  content: "";
 
-  position: fixed;
-
-  top: 0;
-  left: 40%;
-
-  width: 120px;
-  height: 100vh;
-
-  background:
-    linear-gradient(
-      90deg,
-      rgba(139,92,246,0),
-      rgba(139,92,246,0.35),
-      rgba(124,58,237,0)
-    );
-
-  filter: blur(25px);
-
-  z-index: -1;
-}
-@keyframes backgroundMove {
-
-  from {
-    background-position: center center;
-  }
-
-  to {
-    background-position: 55% 45%;
-  }
-
-}
 </style>
 </head>
 
@@ -1183,6 +1130,8 @@ body {
 </head>
 
 <body>
+
+<div class="login-background"></div>
 
 <div id="authSection">
 
