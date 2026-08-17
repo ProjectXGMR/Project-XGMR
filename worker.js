@@ -1669,8 +1669,9 @@ profile: {
               users.username,
               profiles.display_name,
               profiles.bio,
-              profiles.interests,
-              profiles.avatar_url
+profiles.interests,
+profiles.avatar_url,
+profiles.avatar_data
             FROM users
             LEFT JOIN profiles ON profiles.user_id = users.id
             WHERE users.username = ?`
