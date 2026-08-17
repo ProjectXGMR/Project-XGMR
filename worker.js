@@ -463,6 +463,53 @@ if (data.profile.avatar_data) {
     text-align: center;
     margin-top: 15px;
   }
+.brand {
+  text-align: center;
+  margin-bottom: 35px;
+}
+
+.brand h1 {
+  margin: 0;
+  font-size: 42px;
+  letter-spacing: -1px;
+}
+
+.brand p {
+  margin: 8px 0 0;
+  color: #6b7280;
+  font-size: 16px;
+}
+
+.welcome-text {
+  text-align: center;
+  margin-bottom: 28px;
+}
+
+.welcome-text h2 {
+  margin-bottom: 8px;
+}
+
+.welcome-text p {
+  margin: 0;
+  color: #6b7280;
+  line-height: 1.6;
+}
+
+.auth-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.auth-buttons button {
+  margin-top: 8px;
+  transition: transform 0.15s ease, opacity 0.15s ease;
+}
+
+.auth-buttons button:hover {
+  transform: translateY(-1px);
+  opacity: 0.9;
+}
 </style>
 </head>
 
@@ -471,13 +518,21 @@ if (data.profile.avatar_data) {
 
 <div id="authSection">
 
-  <div id="authWelcome">
-    <h2>Witaj w myproject</h2>
+<div id="authWelcome">
 
+  <div class="brand">
+    <h1>myproject</h1>
+    <p>Twoje miejsce w sieci.</p>
+  </div>
+
+  <div class="welcome-text">
+    <h2>Witaj!</h2>
     <p>
-      Zaloguj się lub utwórz nowe konto.
+      Dołącz do myproject lub zaloguj się na swoje konto.
     </p>
+  </div>
 
+  <div class="auth-buttons">
     <button id="showRegisterButton" type="button">
       Zarejestruj się
     </button>
@@ -486,6 +541,8 @@ if (data.profile.avatar_data) {
       Zaloguj się
     </button>
   </div>
+
+</div>
 
   <div id="registerSection" style="display:none;">
 
