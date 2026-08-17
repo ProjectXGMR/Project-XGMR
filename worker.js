@@ -314,7 +314,8 @@ body::after {
 
   transform: scale(1.05);
 
-  z-index: -2;
+  z-index: 10;
+    opacity: 1;
 
   animation: backgroundMove 18s ease-in-out infinite alternate;
 }
