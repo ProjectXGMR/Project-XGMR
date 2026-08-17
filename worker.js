@@ -807,16 +807,13 @@ loginForm.addEventListener("submit", async (event) => {
 
     const data = await response.json();
 
-    if (data.success) {
-      loginMessage.textContent = "Zalogowano pomyślnie!";
+if (data.success) {
+  loginMessage.textContent = "Zalogowano pomyślnie!";
 
-      document.getElementById("authSection").style.display = "none";
-      document.getElementById("appSection").style.display = "block";
-
-      await loadProfile();
-    } else {
-      loginMessage.textContent = data.error;
-    }
+  await loadProfile();
+} else {
+  loginMessage.textContent = data.error;
+}
 
   } catch (error) {
     console.error("Błąd logowania:", error);
@@ -826,8 +823,6 @@ loginForm.addEventListener("submit", async (event) => {
   }
 });
         const profileSection = document.getElementById("profileSection");
-   const appSection = document.getElementById("appSection");
-const authSection = document.getElementById("authSection");
     const profileForm = document.getElementById("profileForm");
     const avatarFile = document.getElementById("avatarFile");
 const avatarPreview = document.getElementById("avatarPreview");
