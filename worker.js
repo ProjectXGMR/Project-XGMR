@@ -1274,12 +1274,6 @@ settingsButton.addEventListener("click", () => {
     console.log("PROFIL W PANELU:", profile);
 console.log("AVATAR DATA:", profile.avatar_data);
 
-alert(
-  "avatar_data: " +
-  String(profile.avatar_data) +
-  "\n\navatar_url: " +
-  String(profile.avatar_url)
-);
     document.getElementById("appProfileUsername").textContent =
       profile.username || "";
 
