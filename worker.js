@@ -1385,7 +1385,7 @@ if (data.success) {
           "Wystąpił błąd połączenia.";
       }
     });
-
+    
     logoutButton.addEventListener("click", async () => {
       const response = await fetch("/api/logout", {
         method: "POST"
