@@ -386,58 +386,92 @@ if (data.profile.avatar_data) {
 <body>
   <h1>myproject</h1>
 
-  <h2>Utwórz konto</h2>
+<div id="authSection">
 
-  <form id="registerForm">
-    <input
-      type="text"
-      id="registerUsername"
-      placeholder="Nazwa użytkownika"
-      required
-    >
+  <div id="authWelcome">
+    <h2>Witaj w myproject</h2>
 
-    <input
-      type="email"
-      id="registerEmail"
-      placeholder="E-mail"
-      required
-    >
+    <p>
+      Zaloguj się lub utwórz nowe konto.
+    </p>
 
-    <input
-      type="password"
-      id="registerPassword"
-      placeholder="Hasło"
-      required
-    >
+    <button id="showRegisterButton" type="button">
+      Zarejestruj się
+    </button>
 
-    <button type="submit">Zarejestruj się</button>
-  </form>
+    <button id="showLoginButton" type="button">
+      Zaloguj się
+    </button>
+  </div>
 
-  <p id="registerMessage"></p>
+  <div id="registerSection" style="display:none;">
 
-  <hr>
+    <h2>Utwórz konto</h2>
 
-  <h2>Zaloguj się</h2>
+    <form id="registerForm">
+      <input
+        type="text"
+        id="registerUsername"
+        placeholder="Nazwa użytkownika"
+        required
+      >
 
-  <form id="loginForm">
-    <input
-      type="email"
-      id="loginEmail"
-      placeholder="E-mail"
-      required
-    >
+      <input
+        type="email"
+        id="registerEmail"
+        placeholder="E-mail"
+        required
+      >
 
-    <input
-      type="password"
-      id="loginPassword"
-      placeholder="Hasło"
-      required
-    >
+      <input
+        type="password"
+        id="registerPassword"
+        placeholder="Hasło"
+        required
+      >
 
-    <button type="submit">Zaloguj się</button>
-  </form>
+      <button type="submit">Zarejestruj się</button>
+    </form>
 
-  <p id="loginMessage"></p>
+    <p id="registerMessage"></p>
+
+    <button id="backToAuthButton" type="button">
+      Wróć
+    </button>
+
+  </div>
+
+  <div id="loginSection" style="display:none;">
+
+    <h2>Zaloguj się</h2>
+
+    <form id="loginForm">
+      <input
+        type="email"
+        id="loginEmail"
+        placeholder="E-mail"
+        required
+      >
+
+      <input
+        type="password"
+        id="loginPassword"
+        placeholder="Hasło"
+        required
+      >
+
+      <button type="submit">Zaloguj się</button>
+    </form>
+
+    <p id="loginMessage"></p>
+
+    <button id="backToAuthButtonLogin" type="button">
+      Wróć
+    </button>
+
+  </div>
+
+</div>
 <div id="profileSection" style="display:none;">
 
   <hr>
