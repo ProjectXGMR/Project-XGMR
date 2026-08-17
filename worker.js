@@ -546,6 +546,16 @@ if (data.profile.avatar_data) {
     <p>
       Dołącz do myproject lub zaloguj się na swoje konto.
     </p>
+ <div id="appSection" style="display:none;">
+
+  <h1>myproject</h1>
+
+  <div class="dashboard-placeholder">
+    <h2>Witaj!</h2>
+    <p>To jest Twój główny panel.</p>
+  </div>
+
+</div>
   </div>
 
   <div class="auth-buttons">
@@ -810,6 +820,9 @@ loginForm.addEventListener("submit", async (event) => {
 if (data.success) {
   loginMessage.textContent = "Zalogowano pomyślnie!";
 
+  document.getElementById("authSection").style.display = "none";
+  appSection.style.display = "block";
+
   await loadProfile();
 } else {
   loginMessage.textContent = data.error;
@@ -823,6 +836,7 @@ if (data.success) {
   }
 });
         const profileSection = document.getElementById("profileSection");
+    const appSection = document.getElementById("appSection");
     const profileForm = document.getElementById("profileForm");
     const avatarFile = document.getElementById("avatarFile");
 const avatarPreview = document.getElementById("avatarPreview");
