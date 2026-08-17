@@ -1441,18 +1441,6 @@ appLogoutButton.addEventListener("click", async () => {
     console.error("Błąd wylogowania:", error);
   }
 });
-      
-      const response = await fetch("/api/logout", {
-        method: "POST"
-      });
-
-      const data = await response.json();
-
-      if (data.success) {
-        profileSection.style.display = "none";
-        loginMessage.textContent = "Wylogowano.";
-      }
-    });
 
     loadProfile();
  const homeButton = document.getElementById("homeButton");
