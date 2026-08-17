@@ -544,127 +544,384 @@ if (profile.avatar_data) {
   overflow: hidden;
 }
 
+/* =========================
+   MYPROJECT — DARK PURPLE
+   ========================= */
+
 .app-header {
   display: flex;
   align-items: center;
   justify-content: space-between;
   padding: 20px 28px;
-  border-bottom: 1px solid #e5e7eb;
+
+  background: rgba(10, 8, 18, 0.72);
+  border-bottom: 1px solid rgba(139, 92, 246, 0.18);
+
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+
+  position: relative;
+  z-index: 5;
 }
 
 .app-header h1 {
   margin: 0;
   font-size: 26px;
+  color: #f5f3ff;
+  letter-spacing: 0.5px;
 }
 
 #appUsername {
-  color: #6b7280;
+  color: #a78bfa;
+  font-size: 14px;
 }
+
+
+/* =========================
+   GŁÓWNY UKŁAD
+   ========================= */
 
 .app-layout {
   display: flex;
   min-height: 500px;
+
+  background:
+    radial-gradient(
+      circle at 80% 20%,
+      rgba(124, 58, 237, 0.18),
+      transparent 32%
+    ),
+    radial-gradient(
+      circle at 20% 80%,
+      rgba(139, 92, 246, 0.10),
+      transparent 30%
+    ),
+    #08060d;
+
+  color: #f5f3ff;
+
+  position: relative;
 }
+
+
+/* =========================
+   SIDEBAR
+   ========================= */
 
 .app-sidebar {
   width: 210px;
-  padding: 20px;
-  background: #f9fafb;
-  border-right: 1px solid #e5e7eb;
+  padding: 24px 18px;
+
+  background: rgba(15, 12, 24, 0.72);
+  border-right: 1px solid rgba(139, 92, 246, 0.16);
+
+  backdrop-filter: blur(22px);
+  -webkit-backdrop-filter: blur(22px);
+
+  position: relative;
+  z-index: 3;
 }
 
 .app-sidebar button {
+  width: 100%;
   margin-top: 8px;
+
+  padding: 11px 14px;
+
+  border: 1px solid transparent;
+  border-radius: 10px;
+
+  background: transparent;
+  color: #a1a1aa;
+
+  text-align: left;
+  font-size: 14px;
+
+  cursor: pointer;
+
+  transition:
+    background 0.2s ease,
+    color 0.2s ease,
+    border-color 0.2s ease,
+    transform 0.2s ease;
 }
+
+.app-sidebar button:hover {
+  background: rgba(139, 92, 246, 0.12);
+  border-color: rgba(139, 92, 246, 0.20);
+  color: #f5f3ff;
+  transform: translateX(3px);
+}
+
+.app-sidebar button:active {
+  transform: translateX(1px);
+}
+
+
+/* WYLOGUJ */
 
 #appLogoutButton {
   margin-top: 35px;
-  background: #374151;
+
+  background: rgba(139, 92, 246, 0.08);
+  border-color: rgba(139, 92, 246, 0.16);
+  color: #c4b5fd;
 }
+
+#appLogoutButton:hover {
+  background: rgba(139, 92, 246, 0.18);
+  border-color: rgba(167, 139, 250, 0.35);
+  color: #ffffff;
+}
+
+
+/* =========================
+   CONTENT
+   ========================= */
 
 .app-content {
   flex: 1;
-  padding: 35px;
+  padding: 40px;
+
+  position: relative;
+  overflow: hidden;
+}
+
+.app-content::before {
+  content: "";
+
+  position: absolute;
+
+  width: 320px;
+  height: 320px;
+
+  top: -120px;
+  right: -100px;
+
+  background: rgba(139, 92, 246, 0.16);
+
+  filter: blur(90px);
+  border-radius: 50%;
+
+  pointer-events: none;
 }
 
 .app-content h2 {
   text-align: left;
   margin-top: 0;
+  color: #f5f3ff;
 }
 
 .app-content p {
-  color: #6b7280;
+  color: #a1a1aa;
   line-height: 1.6;
 }
+
+
+/* =========================
+   PROFIL
+   ========================= */
+
 .profile-card {
   max-width: 600px;
   margin: 0 auto;
+
+  padding: 30px;
+
+  background: rgba(17, 13, 28, 0.68);
+
+  border: 1px solid rgba(139, 92, 246, 0.18);
+  border-radius: 20px;
+
+  box-shadow:
+    0 20px 60px rgba(0, 0, 0, 0.35),
+    0 0 40px rgba(124, 58, 237, 0.08);
+
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
 }
 
 .profile-avatar {
   width: 110px;
   height: 110px;
   margin: 0 auto 18px;
+
   border-radius: 50%;
-  background: #e5e7eb;
+
+  background:
+    linear-gradient(
+      135deg,
+      rgba(139, 92, 246, 0.35),
+      rgba(76, 29, 149, 0.25)
+    );
+
+  border: 2px solid rgba(167, 139, 250, 0.45);
+
   display: flex;
   align-items: center;
   justify-content: center;
+
   font-size: 42px;
-  color: #6b7280;
+  color: #c4b5fd;
+
   background-size: cover;
   background-position: center;
+
   overflow: hidden;
+
+  box-shadow:
+    0 0 30px rgba(139, 92, 246, 0.22);
 }
 
 .profile-name {
   text-align: center;
   margin-bottom: 4px;
+
   font-size: 24px;
+  color: #f5f3ff;
 }
 
 .profile-username {
   text-align: center;
-  color: #6b7280;
+  color: #8b7fa3;
   margin-bottom: 25px;
 }
 
 .profile-info {
-  background: #f9fafb;
+  background: rgba(8, 6, 13, 0.45);
+
+  border: 1px solid rgba(139, 92, 246, 0.12);
+
   border-radius: 14px;
+
   padding: 18px;
   margin-bottom: 20px;
+
+  backdrop-filter: blur(12px);
 }
 
 .profile-info p {
   margin: 8px 0;
 }
 
+.profile-info strong {
+  color: #c4b5fd;
+}
+
+
+/* =========================
+   PRZYCISK EDYCJI
+   ========================= */
+
 .profile-edit-button {
   margin-top: 10px;
+
+  background: linear-gradient(
+    135deg,
+    #7c3aed,
+    #8b5cf6
+  );
+
+  color: white;
+
+  border: none;
+  border-radius: 10px;
+
+  padding: 11px 18px;
+
+  cursor: pointer;
+
+  box-shadow:
+    0 8px 25px rgba(124, 58, 237, 0.25);
+
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
 }
+
+.profile-edit-button:hover {
+  transform: translateY(-2px);
+
+  box-shadow:
+    0 12px 30px rgba(124, 58, 237, 0.35);
+}
+
+
+/* =========================
+   FORMULARZ PROFILU
+   ========================= */
 
 .profile-form {
   margin-top: 20px;
-  padding: 20px;
-  background: #f9fafb;
+  padding: 22px;
+
+  background: rgba(8, 6, 13, 0.55);
+
   border-radius: 16px;
-  border: 1px solid #e5e7eb;
+
+  border: 1px solid rgba(139, 92, 246, 0.16);
+
+  backdrop-filter: blur(14px);
 }
 
 .profile-form label {
   display: block;
   margin-top: 12px;
+
   font-weight: 600;
+  color: #c4b5fd;
+}
+
+.profile-form input,
+.profile-form textarea {
+  width: 100%;
+  box-sizing: border-box;
+
+  margin-top: 7px;
+  padding: 11px 13px;
+
+  background: rgba(255, 255, 255, 0.04);
+
+  border: 1px solid rgba(139, 92, 246, 0.16);
+  border-radius: 9px;
+
+  color: #f5f3ff;
+
+  outline: none;
+
+  transition:
+    border-color 0.2s ease,
+    background 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.profile-form input:focus,
+.profile-form textarea:focus {
+  background: rgba(139, 92, 246, 0.07);
+
+  border-color: rgba(167, 139, 250, 0.55);
+
+  box-shadow:
+    0 0 0 3px rgba(139, 92, 246, 0.10);
 }
 
 .profile-form button {
   margin-top: 14px;
 }
 
+
+/* ANULUJ */
+
 .profile-cancel {
-  background: #e5e7eb;
-  color: #111827;
+  background: rgba(255, 255, 255, 0.06);
+  color: #a1a1aa;
+
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.profile-cancel:hover {
+  background: rgba(255, 255, 255, 0.10);
+  color: #f5f3ff;
 }
 </style>
 </head>
