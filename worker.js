@@ -676,7 +676,6 @@ if (data.profile.avatar_data) {
   </div>
 
 </div>
-  </div>
 
   <div class="auth-buttons">
     <button id="showRegisterButton" type="button">
