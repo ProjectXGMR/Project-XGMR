@@ -835,12 +835,73 @@ if (profile.avatar_data) {
 
     <main class="app-content">
 
-      <div id="homeView">
-        <h2>Witaj!</h2>
-        <p>
-          To jest Twój główny panel myproject.
-        </p>
-      </div>
+<div id="homeView">
+
+  <div class="home-hero">
+    <div>
+      <span class="home-eyebrow">MYPROJECT</span>
+
+      <h2>Witaj ponownie!</h2>
+
+      <p>
+        Miło Cię widzieć. To jest Twoje centrum myproject.
+      </p>
+    </div>
+  </div>
+
+  <div class="home-cards">
+
+    <div class="home-card">
+      <div class="home-card-icon">👤</div>
+      <h3>Twój profil</h3>
+      <p>
+        Zarządzaj swoim profilem, zdjęciem i informacjami o sobie.
+      </p>
+
+      <button type="button" onclick="profileButton.click()">
+        Otwórz profil
+      </button>
+    </div>
+
+    <div class="home-card">
+      <div class="home-card-icon">💬</div>
+      <h3>Wiadomości</h3>
+      <p>
+        Twoje rozmowy i wiadomości będą dostępne właśnie tutaj.
+      </p>
+
+      <button type="button" onclick="messagesButton.click()">
+        Wiadomości
+      </button>
+    </div>
+
+    <div class="home-card">
+      <div class="home-card-icon">⚙️</div>
+      <h3>Ustawienia</h3>
+      <p>
+        Dostosuj swoje konto i ustawienia myproject.
+      </p>
+
+      <button type="button" onclick="settingsButton.click()">
+        Ustawienia
+      </button>
+    </div>
+
+  </div>
+
+  <div class="home-info-card">
+
+    <div>
+      <span class="home-info-label">STATUS</span>
+      <h3>Twoje konto jest aktywne</h3>
+      <p>
+        Wszystko działa poprawnie. Możesz korzystać z myproject.
+      </p>
+    </div>
+
+  </div>
+
+</div>
 
       <div id="messagesView" style="display:none;">
         <h2>Wiadomości</h2>
