@@ -570,6 +570,13 @@ if (data.profile.avatar_data) {
 const avatarPreview = document.getElementById("avatarPreview");
 let compressedAvatarData = null;
 
+const editProfileButton =
+  document.getElementById("editProfileButton");
+
+editProfileButton.addEventListener("click", () => {
+  profileForm.style.display = "block";
+});
+
 avatarFile.addEventListener("change", async () => {
   const file = avatarFile.files[0];
 
