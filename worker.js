@@ -494,7 +494,10 @@ if (data.profile.avatar_data) {
     <br><br>
 
     <button type="submit">Zapisz profil</button>
-
+<button id="cancelEditButton" type="button">
+  Anuluj
+</button>
+ 
   </form>
 
   <p id="profileMessage"></p>
