@@ -381,6 +381,89 @@ if (data.profile.avatar_data) {
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>myproject</title>
+<style>
+  * {
+    box-sizing: border-box;
+  }
+
+  body {
+    margin: 0;
+    min-height: 100vh;
+    font-family: Arial, sans-serif;
+    background: #f3f4f6;
+    color: #111827;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 24px;
+  }
+
+  #authSection,
+  #profileSection {
+    width: 100%;
+    max-width: 520px;
+    background: white;
+    padding: 32px;
+    border-radius: 20px;
+    box-shadow: 0 12px 35px rgba(0, 0, 0, 0.08);
+  }
+
+  h1,
+  h2 {
+    text-align: center;
+  }
+
+  input,
+  textarea {
+    width: 100%;
+    padding: 12px;
+    margin-top: 10px;
+    border: 1px solid #d1d5db;
+    border-radius: 10px;
+    font-size: 15px;
+  }
+
+  textarea {
+    resize: vertical;
+  }
+
+  button {
+    width: 100%;
+    padding: 12px;
+    margin-top: 12px;
+    border: none;
+    border-radius: 10px;
+    background: #2563eb;
+    color: white;
+    font-size: 15px;
+    cursor: pointer;
+  }
+
+  button:hover {
+    opacity: 0.9;
+  }
+
+  hr {
+    border: none;
+    border-top: 1px solid #e5e7eb;
+    margin: 24px 0;
+  }
+
+  #authWelcome {
+    text-align: center;
+  }
+
+  #authWelcome button {
+    margin-top: 10px;
+  }
+
+  #registerMessage,
+  #loginMessage,
+  #profileMessage {
+    text-align: center;
+    margin-top: 15px;
+  }
+</style>
 </head>
 
 <body>
