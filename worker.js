@@ -1181,6 +1181,13 @@ let compressedAvatarData = null;
 const editProfileButton =
   document.getElementById("editProfileButton");
 
+const profileEditPanel =
+  document.getElementById("profileEditPanel");
+
+editProfileButton.addEventListener("click", () => {
+  profileEditPanel.style.display = "block";
+});
+
 const cancelEditButton =
   document.getElementById("cancelEditButton");
 
