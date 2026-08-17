@@ -299,17 +299,22 @@ body::after {
   height: 100vh;
 
   background:
-    background: red;
+    linear-gradient(
+      90deg,
+      #07050d 0%,
+      rgba(7,5,13,0.45) 30%,
+      rgba(7,5,13,0.15) 100%
+    ),
+    url("https://github.com/ProjectXGMR/Project-XGMR/blob/main/login-bg.jpg?raw=true");
 
   background-size: cover;
   background-position: center;
 
-  filter: blur(3px);
+  filter: blur(4px);
 
   transform: scale(1.05);
 
-  z-index: 10;
-    opacity: 1;
+  z-index: 0;
 
   animation: backgroundMove 18s ease-in-out infinite alternate;
 }
@@ -476,8 +481,6 @@ body {
 
     color: #f5f3ff;
 
-border: 10px solid red;
-
     display: flex;
     align-items: stretch;
     justify-content: flex-start;
@@ -513,6 +516,9 @@ border: 10px solid red;
     display: flex;
     flex-direction: column;
     justify-content: center;
+
+    position: relative;
+z-index: 2;
 }
   h1,
   h2 {
