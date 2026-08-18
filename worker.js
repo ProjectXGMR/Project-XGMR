@@ -2350,8 +2350,9 @@ homeButton.addEventListener("click", () => {
   showView(homeView);
 });
 
-messagesButton.addEventListener("click", () => {
+messagesButton.addEventListener("click", async () => {
   showView(messagesView);
+  await loadChats();
 });
 
 profileButton.addEventListener("click", async () => {
