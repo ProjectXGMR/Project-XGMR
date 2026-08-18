@@ -2199,7 +2199,7 @@ async function loadChats() {
     const data = await response.json();
 
     if (!data.success) {
-      chatList.innerHTML = `<p>${data.error}</p>`;
+chatList.innerHTML = "<p>" + data.error + "</p>";
       return;
     }
 
