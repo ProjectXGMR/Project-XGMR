@@ -2618,6 +2618,59 @@ profiles.avatar_data
       });
     }
 
+    // Lista czatów użytkownika
+if (url.pathname === "/api/chats" && request.method === "GET") {
+  try {
+    const user = await getCurrentUser(request, env);
+
+    if (!user) {
+      return json(
+        {
+          success: false,
+          error: "Musisz być zalogowany."
+        },
+        401
+      );
+    }
+
+    const chats = await env.DB
+      .prepare(
+        `SELECT
+          conversations.id,
+          conversations.user1_id,
+          conversations.user2_id,
+          conversations.created_at,
+          CASE
+            WHEN conversations.user1_id = ? THEN users2.username
+            ELSE users1.username
+          END AS other_username
+        FROM conversations
+        JOIN users AS users1
+          ON users1.id = conversations.user1_id
+        JOIN users AS users2
+          ON users2.id = conversations.user2_id
+        WHERE conversations.user1_id = ?
+           OR conversations.user2_id = ?
+        ORDER BY conversations.created_at DESC`
+      )
+      .bind(user.id, user.id, user.id)
+      .all();
+
+    return json({
+      success: true,
+      chats: chats.results
+    });
+  } catch (error) {
+    return json(
+      {
+        success: false,
+        error: "Nie udało się pobrać czatów."
+      },
+      500
+    );
+  }
+}
+    
     // Wylogowanie
     if (url.pathname === "/api/logout" && request.method === "POST") {
       const cookie = request.headers.get("Cookie") || "";
