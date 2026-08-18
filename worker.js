@@ -2671,6 +2671,98 @@ if (url.pathname === "/api/chats" && request.method === "GET") {
   }
 }
     
+   
+    // Utworzenie czatu 1:1
+if (url.pathname === "/api/chats" && request.method === "POST") {
+  try {
+    const user = await getCurrentUser(request, env);
+
+    if (!user) {
+      return json(
+        {
+          success: false,
+          error: "Musisz być zalogowany."
+        },
+        401
+      );
+    }
+
+    const data = await request.json();
+    const username = String(data.username || "").trim();
+
+    if (!username) {
+      return json(
+        {
+          success: false,
+          error: "Podaj nazwę użytkownika."
+        },
+        400
+      );
+    }
+
+    const otherUser = await env.DB
+      .prepare(
+        "SELECT id, username FROM users WHERE username = ?"
+      )
+      .bind(username)
+      .first();
+
+    if (!otherUser) {
+      return json(
+        {
+          success: false,
+          error: "Nie znaleziono użytkownika."
+        },
+        404
+      );
+    }
+
+    if (otherUser.id === user.id) {
+      return json(
+        {
+          success: false,
+          error: "Nie możesz rozpocząć czatu sam ze sobą."
+        },
+        400
+      );
+    }
+
+    const user1 = Math.min(user.id, otherUser.id);
+    const user2 = Math.max(user.id, otherUser.id);
+
+    await env.DB
+      .prepare(
+        `INSERT OR IGNORE INTO conversations
+         (user1_id, user2_id)
+         VALUES (?, ?)`
+      )
+      .bind(user1, user2)
+      .run();
+
+    const conversation = await env.DB
+      .prepare(
+        `SELECT id, user1_id, user2_id, created_at
+         FROM conversations
+         WHERE user1_id = ? AND user2_id = ?`
+      )
+      .bind(user1, user2)
+      .first();
+
+    return json({
+      success: true,
+      conversation
+    });
+  } catch (error) {
+    return json(
+      {
+        success: false,
+        error: "Nie udało się utworzyć czatu."
+      },
+      500
+    );
+  }
+}
+    
     // Wylogowanie
     if (url.pathname === "/api/logout" && request.method === "POST") {
       const cookie = request.headers.get("Cookie") || "";
