@@ -2187,6 +2187,107 @@ function showView(view) {
   view.style.display = "block";
 }
 
+let currentConversationId = null;
+
+async function loadChats() {
+  const chatList = document.getElementById("chatList");
+
+  chatList.innerHTML = "<p>Ładowanie rozmów...</p>";
+
+  try {
+    const response = await fetch("/api/chats");
+    const data = await response.json();
+
+    if (!data.success) {
+      chatList.innerHTML = `<p>${data.error}</p>`;
+      return;
+    }
+
+    if (data.chats.length === 0) {
+      chatList.innerHTML = "<p>Nie masz jeszcze żadnych rozmów.</p>";
+      return;
+    }
+
+    chatList.innerHTML = "";
+
+    data.chats.forEach((chat) => {
+      const button = document.createElement("button");
+
+      button.type = "button";
+      button.className = "chat-item";
+      button.textContent = "@" + chat.other_username;
+
+      button.addEventListener("click", () => {
+        openChat(chat.id, chat.other_username);
+      });
+
+      chatList.appendChild(button);
+    });
+  } catch (error) {
+    console.error("Błąd pobierania czatów:", error);
+
+    chatList.innerHTML =
+      "<p>Nie udało się pobrać rozmów.</p>";
+  }
+}
+
+async function openChat(conversationId, username) {
+  currentConversationId = conversationId;
+
+  document.getElementById("chatHeader").innerHTML =
+    "<h3>@" + username + "</h3>";
+
+  const chatMessages = document.getElementById("chatMessages");
+
+  chatMessages.innerHTML =
+    "<p>Ładowanie wiadomości...</p>";
+
+  try {
+    const response = await fetch(
+      "/api/chats/" + conversationId + "/messages"
+    );
+
+    const data = await response.json();
+
+    if (!data.success) {
+      chatMessages.innerHTML =
+        "<p>" + data.error + "</p>";
+      return;
+    }
+
+    if (data.messages.length === 0) {
+      chatMessages.innerHTML =
+        "<p>Brak wiadomości. Napisz coś!</p>";
+      return;
+    }
+
+    chatMessages.innerHTML = "";
+
+    data.messages.forEach((message) => {
+      const messageElement = document.createElement("div");
+
+      messageElement.className = "chat-message";
+
+      messageElement.innerHTML =
+        "<strong>@" +
+        message.sender_username +
+        "</strong><p>" +
+        message.content.replace(/</g, "&lt;").replace(/>/g, "&gt;") +
+        "</p>";
+
+      chatMessages.appendChild(messageElement);
+    });
+
+    chatMessages.scrollTop = chatMessages.scrollHeight;
+
+  } catch (error) {
+    console.error("Błąd otwierania czatu:", error);
+
+    chatMessages.innerHTML =
+      "<p>Nie udało się pobrać wiadomości.</p>";
+  }
+}
+
 homeButton.addEventListener("click", () => {
   showView(homeView);
 });
