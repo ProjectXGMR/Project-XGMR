@@ -1465,12 +1465,70 @@ body {
   </div>
 
 </div>
-      <div id="messagesView" style="display:none;">
-        <h2>Wiadomości</h2>
-        <p>
-          Tutaj pojawią się Twoje rozmowy.
-        </p>
+<div id="messagesView" style="display:none;">
+
+  <h2>Wiadomości</h2>
+
+  <div class="chat-layout">
+
+    <aside class="chat-list">
+
+      <h3>Rozmowy</h3>
+
+      <div id="chatList">
+        <p>Ładowanie rozmów...</p>
       </div>
+
+      <div class="new-chat">
+        <input
+          type="text"
+          id="chatUsername"
+          placeholder="Nazwa użytkownika"
+        >
+
+        <button
+          id="startChatButton"
+          type="button"
+        >
+          Nowa rozmowa
+        </button>
+      </div>
+
+    </aside>
+
+    <section class="chat-window">
+
+      <div id="chatHeader">
+        <h3>Wybierz rozmowę</h3>
+      </div>
+
+      <div id="chatMessages">
+        <p>Wybierz rozmowę, aby zobaczyć wiadomości.</p>
+      </div>
+
+      <form id="chatForm">
+
+        <input
+          type="text"
+          id="chatInput"
+          placeholder="Napisz wiadomość..."
+          maxlength="5000"
+          autocomplete="off"
+        >
+
+        <button type="submit">
+          Wyślij
+        </button>
+
+      </form>
+
+      <p id="chatMessage"></p>
+
+    </section>
+
+  </div>
+
+</div>
 
 <div id="profileView" style="display:none;">
 
