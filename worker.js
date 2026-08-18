@@ -2346,6 +2346,58 @@ async function openChat(conversationId, username) {
   }
 }
 
+const startChatButton = document.getElementById("startChatButton");
+
+startChatButton.addEventListener("click", async () => {
+  const chatUsername = document.getElementById("chatUsername");
+  const chatMessage = document.getElementById("chatMessage");
+
+  const username = chatUsername.value.trim();
+
+  if (!username) {
+    chatMessage.textContent = "Podaj nazwę użytkownika.";
+    return;
+  }
+
+  chatMessage.textContent = "Sprawdzanie użytkownika...";
+
+  try {
+    const response = await fetch("/api/chats", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        username: username
+      })
+    });
+
+    const data = await response.json();
+
+    if (!data.success) {
+      chatMessage.textContent =
+        data.error || "Nie udało się rozpocząć rozmowy.";
+      return;
+    }
+
+    chatUsername.value = "";
+    chatMessage.textContent = "";
+
+    await loadChats();
+
+    openChat(
+      data.conversation.id,
+      username
+    );
+
+  } catch (error) {
+    console.error("Błąd tworzenia czatu:", error);
+
+    chatMessage.textContent =
+      "Nie udało się rozpocząć rozmowy.";
+  }
+});
+
 const chatForm = document.getElementById("chatForm");
 
 chatForm.addEventListener("submit", async (event) => {
