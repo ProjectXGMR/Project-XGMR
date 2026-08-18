@@ -2346,6 +2346,70 @@ async function openChat(conversationId, username) {
   }
 }
 
+const chatForm = document.getElementById("chatForm");
+
+chatForm.addEventListener("submit", async (event) => {
+  event.preventDefault();
+
+  if (!currentConversationId) {
+    return;
+  }
+
+  const chatInput = document.getElementById("chatInput");
+  const chatMessage = document.getElementById("chatMessage");
+
+  const content = chatInput.value.trim();
+
+  if (!content) {
+    return;
+  }
+
+  chatMessage.textContent = "Wysyłanie...";
+
+  try {
+    const response = await fetch(
+      "/api/chats/" + currentConversationId + "/messages",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+          content: content
+        })
+      }
+    );
+
+    const data = await response.json();
+
+    if (!data.success) {
+      chatMessage.textContent = data.error || "Nie udało się wysłać wiadomości.";
+      return;
+    }
+
+    chatInput.value = "";
+    chatMessage.textContent = "";
+
+    const activeChat = document.querySelector(".chat-item.active");
+
+    if (activeChat) {
+      activeChat.classList.remove("active");
+    }
+
+    await openChat(
+      currentConversationId,
+      document
+        .getElementById("chatHeader")
+        .querySelector("h3")
+        ?.textContent.replace("@", "") || ""
+    );
+
+  } catch (error) {
+    console.error("Błąd wysyłania wiadomości:", error);
+    chatMessage.textContent = "Nie udało się wysłać wiadomości.";
+  }
+});
+
 homeButton.addEventListener("click", () => {
   showView(homeView);
 });
