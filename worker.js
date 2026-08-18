@@ -2763,6 +2763,220 @@ if (url.pathname === "/api/chats" && request.method === "POST") {
   }
 }
     
+   
+    // Wysłanie wiadomości w czacie
+if (
+  url.pathname.startsWith("/api/chats/") &&
+  url.pathname.endsWith("/messages") &&
+  request.method === "POST"
+) {
+  try {
+    const user = await getCurrentUser(request, env);
+
+    if (!user) {
+      return json(
+        {
+          success: false,
+          error: "Musisz być zalogowany."
+        },
+        401
+      );
+    }
+
+    const parts = url.pathname.split("/");
+    const conversationId = Number(parts[3]);
+
+    if (!conversationId) {
+      return json(
+        {
+          success: false,
+          error: "Nieprawidłowy czat."
+        },
+        400
+      );
+    }
+
+    const conversation = await env.DB
+      .prepare(
+        `SELECT id, user1_id, user2_id
+         FROM conversations
+         WHERE id = ?`
+      )
+      .bind(conversationId)
+      .first();
+
+    if (!conversation) {
+      return json(
+        {
+          success: false,
+          error: "Nie znaleziono czatu."
+        },
+        404
+      );
+    }
+
+    if (
+      conversation.user1_id !== user.id &&
+      conversation.user2_id !== user.id
+    ) {
+      return json(
+        {
+          success: false,
+          error: "Nie masz dostępu do tego czatu."
+        },
+        403
+      );
+    }
+
+    const data = await request.json();
+    const content = String(data.content || "").trim();
+
+    if (!content) {
+      return json(
+        {
+          success: false,
+          error: "Wiadomość nie może być pusta."
+        },
+        400
+      );
+    }
+
+    if (content.length > 5000) {
+      return json(
+        {
+          success: false,
+          error: "Wiadomość jest za długa."
+        },
+        400
+      );
+    }
+
+    const result = await env.DB
+      .prepare(
+        `INSERT INTO messages
+         (conversation_id, sender_id, content)
+         VALUES (?, ?, ?)`
+      )
+      .bind(conversationId, user.id, content)
+      .run();
+
+    return json({
+      success: true,
+      message: {
+        id: result.meta.last_row_id,
+        conversation_id: conversationId,
+        sender_id: user.id,
+        content
+      }
+    });
+  } catch (error) {
+    return json(
+      {
+        success: false,
+        error: "Nie udało się wysłać wiadomości."
+      },
+      500
+    );
+  }
+}
+    
+   
+    // Pobieranie wiadomości z czatu
+if (
+  url.pathname.startsWith("/api/chats/") &&
+  url.pathname.endsWith("/messages") &&
+  request.method === "GET"
+) {
+  try {
+    const user = await getCurrentUser(request, env);
+
+    if (!user) {
+      return json(
+        {
+          success: false,
+          error: "Musisz być zalogowany."
+        },
+        401
+      );
+    }
+
+    const parts = url.pathname.split("/");
+    const conversationId = Number(parts[3]);
+
+    if (!conversationId) {
+      return json(
+        {
+          success: false,
+          error: "Nieprawidłowy czat."
+        },
+        400
+      );
+    }
+
+    const conversation = await env.DB
+      .prepare(
+        `SELECT id, user1_id, user2_id
+         FROM conversations
+         WHERE id = ?`
+      )
+      .bind(conversationId)
+      .first();
+
+    if (!conversation) {
+      return json(
+        {
+          success: false,
+          error: "Nie znaleziono czatu."
+        },
+        404
+      );
+    }
+
+    if (
+      conversation.user1_id !== user.id &&
+      conversation.user2_id !== user.id
+    ) {
+      return json(
+        {
+          success: false,
+          error: "Nie masz dostępu do tego czatu."
+        },
+        403
+      );
+    }
+
+    const messages = await env.DB
+      .prepare(
+        `SELECT
+          messages.id,
+          messages.sender_id,
+          users.username AS sender_username,
+          messages.content,
+          messages.created_at
+         FROM messages
+         JOIN users
+           ON users.id = messages.sender_id
+         WHERE messages.conversation_id = ?
+         ORDER BY messages.created_at ASC`
+      )
+      .bind(conversationId)
+      .all();
+
+    return json({
+      success: true,
+      messages: messages.results
+    });
+  } catch (error) {
+    return json(
+      {
+        success: false,
+        error: "Nie udało się pobrać wiadomości."
+      },
+      500
+    );
+  }
+}
+    
     // Wylogowanie
     if (url.pathname === "/api/logout" && request.method === "POST") {
       const cookie = request.headers.get("Cookie") || "";
